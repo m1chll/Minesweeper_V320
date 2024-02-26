@@ -6,4 +6,3 @@
 
 ---
 
-Diese Vision verdeutlicht das Ziel Ihres Projekts und die wichtigsten Merkmale, die es von anderen Minesweeper-Implementierungen unterscheiden.
