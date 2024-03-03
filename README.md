@@ -4,5 +4,11 @@
 
 **Für Spieler, die nach einer unterhaltsamen und herausfordernden Erfahrung suchen, deren Interesse an klassischen Puzzlespielen geweckt ist und vielleicht möglicherweise alte Erinnerungen wecken will, ist Minesweeper Deluxe eine vereinfachte Version des beliebten Minesweeper-Spiels. Das auch durch simple Grafiken, anpassbare Schwierigkeitsgrade und flüssige Laufzeit. Im Gegensatz zu anderen Minesweeper-Implementierungen, bietet unser Produkt eine intuitive und simple Benutzeroberfläche, visuelle Ästhetik und einen laufenden Timer, um Ihr Können zu testen.**
 
+## User Stories
+
+Du kannst unsere User Stories unter diesem Link finden: [](https://github.com/m1chll/Minesweeper_V320/issues)
+
+
+
 ---
 
