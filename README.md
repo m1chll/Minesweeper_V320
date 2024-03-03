@@ -6,7 +6,7 @@
 
 ## User Stories
 
-Du kannst unsere User Stories unter diesem Link finden: [User Stories](https://github.com/m1chll/Minesweeper_V320/issues)
+[User Stories](https://github.com/m1chll/Minesweeper_V320/issues) Diese User Stories sind darauf ausgerichtet, eine klare Vision für die Entwicklung unseres Minesweeper Basic Spiels zu bieten und sicherzustellen, dass wir die Bedürfnisse und Erwartungen der Benutzer erfüllen.
 
 
 
