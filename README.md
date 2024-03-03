@@ -6,7 +6,7 @@
 
 ## User Stories
 
-Du kannst unsere User Stories unter diesem Link finden: [](https://github.com/m1chll/Minesweeper_V320/issues)
+Du kannst unsere User Stories unter diesem Link finden: [User Stories](https://github.com/m1chll/Minesweeper_V320/issues)
 
 
 
