@@ -1,4 +1,4 @@
-# Produktvision: Vertiefungsprojekt V320
+# Produktvision : Vertiefungsprojekt V320
 
 ## Minesweeper Basic: Eine Neuinterpretation des Klassikers
 
