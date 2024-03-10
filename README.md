@@ -10,7 +10,7 @@
 Diese User Stories sind darauf ausgerichtet, eine klare Vision für die Entwicklung unseres Minesweeper Basic Spiels zu bieten und sicherzustellen, dass wir die Bedürfnisse und Erwartungen der Benutzer erfüllen.
 
 ## Klassendiagramm
-[Klassendiagramm]()
+[Klassendiagramm](https://github.com/m1chll/Minesweeper_V320/blob/master/Diagramme/V320_Minesweeper_Klassendiagramm_Nicolas_Michael_Carina.pdf)
 Das Klassendiagramm zeigt unsere Herangehensweise an die Entwicklung des Minesweeper-Spiels. Es visualisiert die Struktur des Systems und die Beziehungen zwischen den Klassen wie Spielbrett, Zelle und Spieler. Es hilft uns, die Architektur zu planen und sicherzustellen, dass wir die Benutzeranforderungen erfüllen.
 
 
