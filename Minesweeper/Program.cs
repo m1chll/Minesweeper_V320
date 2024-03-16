@@ -1,4 +1,5 @@
-﻿using Minesweeper.Logic;
+﻿using Minesweeper;
+using System.Text;
 
 namespace Minesweeper
 {
@@ -6,15 +7,13 @@ namespace Minesweeper
     {
         static void Main(string[] args)
         {
-            var model = new Model(20);
+            Console.OutputEncoding = Encoding.UTF8; 
+            Console.WriteLine("😊😘🤣😁💣👍✌");
 
-            while (true)
-            {
-                Console.WriteLine("Bitte Koordinate eingeben: ");
-                var coordinate = Console.ReadLine();
 
-                model.DoTurn(coordinate);
-            }
+            var game = new Game();
+            game.Start();
+
         }
     }
 }
