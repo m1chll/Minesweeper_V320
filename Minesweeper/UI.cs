@@ -18,6 +18,9 @@ namespace Minesweeper
 {
     public class UI
     {
+        /// <summary>
+        /// Stopwatch used to track elapsed time during the game.
+        /// </summary>
         public Stopwatch stopwatch = new Stopwatch();
         public void PrintStartScreen()
         {
@@ -70,6 +73,10 @@ namespace Minesweeper
             Console.Clear();
         }
 
+        /// <summary>
+        /// Asks the user for the game difficulty (Hard, Medium, Easy).
+        /// </summary>
+        /// <returns>The selected difficulty level.</returns>
         public string GetDifficulty()
         {
             string difficulty;
@@ -81,46 +88,117 @@ namespace Minesweeper
             return difficulty;
         }
 
+        /// <summary>
+        /// Stops the stopwatch and prints the elapsed time since it started.
+        /// </summary>
         public void SetTime()
         {
-            // Implementierung hier
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            Console.WriteLine($"Elapsed Time: {elapsedTime.Hours:00}:{elapsedTime.Minutes:00}:{elapsedTime.Seconds:00}");
         }
 
+        /// <summary>
+        /// Asks the user for field coordinates and action (Reveal, Flag, Remove Flag).
+        /// </summary>
+        /// <returns>The input field coordinates and action.</returns>
         public FieldInput GetFieldUpdate()
         {
-            // Implementierung hier
-            return null;
+            Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':");
+            string input = Console.ReadLine().ToUpper(); // Convert Input to capital letter
+
+            if (!CheckedFieldInput(input))
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                return GetFieldUpdate(); // Recursive call to get valid input
+            }
+
+            char column = input[0];
+            int row = int.Parse(input.Substring(1, input.Length - 2));
+            char action = input[input.Length - 1];
+
+            return new FieldInput(row, column, action);
         }
 
+        /// <summary>
+        /// Checks if the entered field input is valid.
+        /// </summary>
+        /// <param name="input">The input string to be checked.</param>
+        /// <returns>True if the input is valid, otherwise false.</returns>
         public bool CheckedFieldInput(string input)
         {
-            // Implementierung hier
-            return false;
+            if (input.Length < 3)
+                return false;
+
+            if (!char.IsLetter(input[0]) || !char.IsDigit(input[1]))
+                return false;
+
+            char action = char.ToUpper(input[input.Length - 1]);
+            if (action != 'R' && action != 'F' && action != 'D')
+                return false;
+
+            return true;
         }
 
+        /// <summary>
+        /// Prints the current game board.
+        /// </summary>
+        /// <param name="gameBoard">The game board to be printed.</param>
         public void PrintGame(List<List<string>> gameBoard)
         {
-            
+            PrintGameInformations(0, 0);
+            PrintGameBoard(gameBoard);
         }
 
+        /// <summary>
+        /// Prints the number of bombs and flags.
+        /// </summary>
+        /// <param name="bombs">The number of bombs.</param>
+        /// <param name="flags">The number of flags.</param>
         private void PrintGameInformations(int bombs, int flags)
         {
-            // Implementierung hier
+            Console.WriteLine($"Bombs: {bombs} Flags: {flags}");
         }
 
+        // isch no chli schwer zum luege ob da stimmt wenn dhälfti vo de andere klasse no falsch sind
+
+        /// <summary>
+        /// Prints the game board.
+        /// </summary>
+        /// <param name="gameBoard">The game board to be printed.</param>
         private void PrintGameBoard(List<List<string>> gameBoard)
         {
-            // Implementierung hier
+            Console.WriteLine("Gameboard:");
+
+            for (int i = 0; i < gameBoard.Count; i++)
+            {
+                for (int j = 0; j < gameBoard[i].Count; j++)
+                {
+                    Console.Write(gameBoard[i][j]);
+                }
+                Console.WriteLine();
+            }
         }
+
 
         public void PrintGameWon()
         {
-            
+            Console.WriteLine("_________                                     __        .__          __  .__                     ._. _____.___.                                  ._.");
+            Console.WriteLine("\\_   ___ \\  ____   ____    ________________ _/  |_ __ __|  | _____ _/  |_|__| ____   ____   _____| | \\__  |   | ____  __ __  __  _  ______   ____| |");
+            Console.WriteLine("/    \\  \\/ /  _ \\ /    \\  / ___\\_  __ \\__  \\\\   __\\  |  \\  | \\__  \\\\   __\\  |/  _ \\ /    \\ /  ___/ |  /   |   |/  _ \\|  |  \\ \\ \\/ \\/ /  _ \\ /    \\ |");
+            Console.WriteLine("\\     \\___(  <_> )   |  \\/ /_/  >  | \\/ __ \\|  | |  |  /  |__/ __ \\|  | |  (  <_> )   |  \\___ \\ |  \\____   (  <_> )  |  /  \\     (  <_> )   |  \\|");
+            Console.WriteLine(" \\______  /\\____/|___|  /\\___  /|__|  (____  /__| |____/|____(____  /__| |__|\\____/|___|  /____  >__  / ______|\\____/|____/    \\/\\_/ \\____/|___|  /_");
+            Console.WriteLine("        \\/            \\//_____/            \\/                     \\/                    \\/     \\/ \\/  \\/                                        \\/\\/ ");
         }
 
         public void PrintGameLost()
         {
-            // Implementierung hier
+            Console.WriteLine("  ________                        ________                    ._. _____.___.              .__    .__  __                     .__             ._.");
+            Console.WriteLine(" /  _____/_____    _____   ____   \\_____  \\___  __ ___________| | \\__  |   | ____  __ __  |  |__ |__|/  |_  _____      _____ |__| ____   ____| |");
+            Console.WriteLine("/   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\  \\/ // __ \\_  __ \\ |  /   |   |/  _ \\|  |  \\ |  |  \\|  \\   __\\ \\__  \\    /     \\|  |/    \\_/ __ \\ |");
+            Console.WriteLine("\\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /    |    \\   /\\  ___/|  | \\/\\|  \\____   (  <_> )  |  / |   Y  \\  ||  |    / __ \\_ |  Y Y  \\  |   |  \\  ___/\\|");
+            Console.WriteLine(" \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   __  / ______|\\____/|____/  |___|  /__||__|   (____  / |__|_|  /__|___|  /\\___  >_");
+            Console.WriteLine("        \\/     \\/      \\/     \\/          \\/          \\/       \\/  \\/                          \\/                \\/        \\/        \\/     \\/\\/");
         }
     }
 
