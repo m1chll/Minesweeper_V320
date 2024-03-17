@@ -9,6 +9,8 @@ namespace Minesweeper
     public class Gameboard
     {
         public object state;
+        internal Field[,] fields;
+
         public int placedFlagsCount { get; set; }
         public List<List<string>> gameboard { get; set; }
 

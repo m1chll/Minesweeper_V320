@@ -8,6 +8,9 @@ namespace Minesweeper;
 
 public class Field
 {
+    internal bool isBomb;
+    internal int bombsAround;
+
     public bool IsBomb { get; set; }    
     public bool HasFlag { get; set; }   
     public bool IsVisible { get; set; }

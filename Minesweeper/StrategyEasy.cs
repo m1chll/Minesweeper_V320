@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    public class StrategyEasy
+    public class StrategyEasy : IStrategy
     {
         public int XSize { get; } = 8;
         public int YSize { get; } = 8;

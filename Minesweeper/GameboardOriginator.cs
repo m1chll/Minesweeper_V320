@@ -6,8 +6,25 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    internal class GameboardOriginator
+    public class GameboardOriginator
     {
+        private Gameboard state;
 
+        public GameboardOriginator(Gameboard initialState)
+        {
+            state = initialState;
+        }
+
+        public void SetState(Gameboard newState)
+        {
+            state = newState;
+        }
+
+        public Gameboard GetState()
+        {
+            return state;
+        }
     }
+
+
 }
