@@ -12,6 +12,7 @@ public interface IStrategy
     int xSize { get; }
     int YSize { get; }
     int ySize { get; }
+
     int NumberOfBombs { get; }
     int numberOfBombs { get; }
 }

@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    internal class GameboardCaretaker
+    public class GameboardCaretaker
     {
+        private Stack<Gameboard> history = new Stack<Gameboard>();
+
+        public void SaveState(Gameboard gameboard)
+        {
+            history.Push(gameboard.Clone());
+        }
+
+        public Gameboard Undo()
+        {
+            if (history.Count == 0)
+            {
+                return null;
+            }
+            // Return last saved state 
+            return history.Pop();
+        }
     }
 }
