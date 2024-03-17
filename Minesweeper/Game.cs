@@ -93,7 +93,7 @@ namespace Minesweeper
         private GameStatus UpdateGameStatus()
         {
       
-            if (gameboard.IsGameOver())
+            if (gameboard.IsGameOver)
             {
                 return GameStatus.Lost;
             }

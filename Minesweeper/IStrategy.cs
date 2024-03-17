@@ -9,10 +9,7 @@ namespace Minesweeper;
 public interface IStrategy
 {
     int XSize { get; }
-    int xSize { get; }
     int YSize { get; }
-    int ySize { get; }
 
     int NumberOfBombs { get; }
-    int numberOfBombs { get; }
 }

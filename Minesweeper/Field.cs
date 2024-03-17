@@ -18,8 +18,7 @@ public class Field
 
     public string GetType()
     {
-        string type;
-        if (IsVisible)
+        string type = "";
 
         return type;
     }
