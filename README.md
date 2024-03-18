@@ -20,7 +20,8 @@ Das Sequenzdiagramm veranschaulicht unseren Entwicklungsansatz für das Mineswee
 
 
 ## Minesweeper Program
-[Minesweeper]()
+[Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper)
+Wir Freuen uns ihnen unsere Applikation zeigen zu können! Das Spiel wurde in c# programmiert und bietet verschiedene spannende Funktionen. Wir haben nicht nur spezielle soundeffekts.
 
 ---
 
