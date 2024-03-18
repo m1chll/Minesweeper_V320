@@ -87,9 +87,9 @@ namespace Minesweeper
             while (!validInput.IsMatch(difficulty))
             {
                 Console.WriteLine("Please enter your difficulty: ");
-                Console.WriteLine("H = Hard");
-                Console.WriteLine("M = Medium");
                 Console.WriteLine("E = Easy");
+                Console.WriteLine("M = Medium");
+                Console.WriteLine("H = Hard");
                 difficulty = Console.ReadLine().ToUpper(); // Großbuchstaben, um auf Groß-/Kleinschreibung nicht zu achten
 
                 if (!validInput.IsMatch(difficulty))

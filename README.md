@@ -19,9 +19,13 @@ Das Klassendiagramm zeigt unsere Herangehensweise an die Entwicklung des Mineswe
 Das Sequenzdiagramm veranschaulicht unseren Entwicklungsansatz für das Minesweeper-Spiel. Es zeigt die Interaktionen zwischen den Objekten, wie der Spieler eine Zelle auswählt, die Spielregeln überprüft werden und das Spielbrett aktualisiert wird. Es ermöglicht uns, den Ablauf eines Szenarios im Spiel zu verstehen und potenzielle Probleme zu identifizieren.
 
 
-## Minesweeper Program
+## Minesweeper Applikatiom
 [Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper)
-Wir Freuen uns ihnen unsere Applikation zeigen zu können! Das Spiel wurde in c# programmiert und bietet verschiedene spannende Funktionen. Wir haben nicht nur spezielle soundeffekts.
+Wir freuen uns, Ihnen unsere Minesweeper-Applikation präsentieren zu können! Das Spiel wurde in C# entwickelt und bietet eine Vielzahl spannender Funktionen. Neben den eingängigen Soundeffekten haben wir auch an eine benutzerfreundliche Oberfläche gedacht. Freuen Sie sich auf verschiedene Sounds, eine Rückgängig-Funktion und eine sorgfältig durchdachte Logik, die das Spielerlebnis verbessert.
+
+## Minesweeper Tests
+[Minesweeper.Test](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Test)
+Unsere Applikation wurde selbstverständlich gründlich getestet, um eine hohe Qualität sicherzustellen. Die Tests bieten einen umfassenden Überblick über den Aufbau unseres Codes und garantieren eine reibungslose Funktionalität. Sollten Sie dennoch auf Fehler stossen - was höchst unwahrscheinlich ist -, bitten wir Sie, sich umgehend mit unserem Team in Verbindung zu setzen. Wir sind stets bereit, Unterstützung zu leisten und etwaige Probleme schnell zu beheben.
 
 ---
 
