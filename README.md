@@ -27,5 +27,8 @@ Wir freuen uns, Ihnen unsere Minesweeper-Applikation präsentieren zu können! D
 [Minesweeper.Test](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Test)
 Unsere Applikation wurde selbstverständlich gründlich getestet, um eine hohe Qualität sicherzustellen. Die Tests bieten einen umfassenden Überblick über den Aufbau unseres Codes und garantieren eine reibungslose Funktionalität. Sollten Sie dennoch auf Fehler stossen - was höchst unwahrscheinlich ist -, bitten wir Sie, sich umgehend mit unserem Team in Verbindung zu setzen. Wir sind stets bereit, Unterstützung zu leisten und etwaige Probleme schnell zu beheben.
 
+## Reflexion
+[Reflexion](#)
+Unsere Reflexion ist supper!
 ---
 
