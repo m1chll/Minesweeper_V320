@@ -31,12 +31,28 @@ namespace Minesweeper
 
         public void WinSound()
         {
-            PlaySound(@"C:/Users/carin/OneDrive - Kt.SG BLD/Dokumente/Informatik - Module/Informatik - Module/V320/Sounds/WinSound.wav");
+            PlaySound(@"Sounds/GameWon.mp3");
         }
 
         public void LoseSound()
         {
-            PlaySound(@"C:/Users/carin/OneDrive - Kt.SG BLD/Dokumente/Informatik - Module/Informatik - Module/V320/Sounds/LoseSound.wav");
+            PlaySound(@"Sounds/GameLost.mp3");
         }
+
+        public void PauseGame()
+        {
+            PlaySound(@"Sounds/PauseSound.mp3");
+        }
+
+        public void Startgame()
+        {
+            PlaySound(@"Sounds/StartGame.mp3");
+        }
+
+        public void AlmostReady()
+        {
+            PlaySound(@"Sounds/FinishHim.mp3");
+        }
+
     }
 }
