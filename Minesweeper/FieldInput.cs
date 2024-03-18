@@ -15,27 +15,6 @@
             ActionType = actionType;
         }
 
-        public FieldInput(int row, char column, char action)
-        {
-            Row = row;
-            Column = column;
-            ActionType = GetActionType(action);
-        }
-
-        private UserAction GetActionType(char action)
-        {
-            switch (char.ToLower(action))
-            {
-                case 'r':
-                    return UserAction.Reveal;
-                case 'f':
-                    return UserAction.Flag;
-                case 'u':
-                    return UserAction.RemoveFlag;
-                default:
-                    throw new ArgumentException("Ungültige Aktion.");
-            }
-        }
     }
 
     public enum UserAction

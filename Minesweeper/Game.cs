@@ -7,7 +7,7 @@ namespace Minesweeper
         private string userName;
         private string difficulty;
         private Gameboard Gameboard;
-        private GameStatus gameStatus;
+        public GameStatus GameStatus { get; set; }
         private List<List<string>> GameboardUI { get; set; }
         public FieldInput CurrentFieldInput { get; set; }
 
@@ -20,9 +20,9 @@ namespace Minesweeper
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
 
-            gameStatus = GameStatus.Ongoing;
+            GameStatus = GameStatus.Ongoing;
 
-            while (gameStatus == GameStatus.Ongoing)
+            while (GameStatus == GameStatus.Ongoing)
             {
                 GameboardUI = Gameboard.GetGameboard();
                 ui.PrintGame(GameboardUI);

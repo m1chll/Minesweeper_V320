@@ -11,16 +11,8 @@ public class Field
     internal bool isBomb;
     internal int bombsAround;
 
-    public bool IsBomb { get; set; }    
-    public bool HasFlag { get; set; }   
-    public bool IsVisible { get; set; }
-    public int BombsAround { get; set; }
-
-    public string GetType()
-    {
-        string type = "";
-
-        return type;
-    }
-        
+    public bool IsBomb { get; set; } = false;
+    public bool HasFlag { get; set; } = false;
+    public bool IsVisible { get; set; } = false;
+    public int BombsAround { get; set; }        
 }

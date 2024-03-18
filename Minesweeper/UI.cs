@@ -60,6 +60,8 @@ namespace Minesweeper
             Console.WriteLine("   - 'P' is a flag marking a potential mine.");
             Console.WriteLine("   - Numbers indicate how many mines are adjacent to that cell.");
             Console.WriteLine("-----------------------------------------------------------------------");
+            
+            
             while (true)
             {
                 Console.WriteLine("Press 1 to start");
