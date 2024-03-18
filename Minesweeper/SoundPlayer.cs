@@ -24,7 +24,7 @@ namespace Minesweeper
             }
             else
             {
-                // Falls Pfad leer/ungültig
+                // Falls Pfad leer/ungülti
                 throw new ArgumentException("Der Soundpfad ist ungültig oder leer");
             }
         }
