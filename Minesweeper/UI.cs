@@ -128,10 +128,37 @@ namespace Minesweeper
 
             char column = input[0];
             int row = int.Parse(input.Substring(1, input.Length - 2));
-            char action = input[input.Length - 1];
+            string actionStr = input.Substring(input.Length - 1);
+
+            // Convert the string representing the action to the corresponding UserAction enum value
+            UserAction action;
+            if (actionStr.Length == 1)
+            {
+                switch (actionStr[0])
+                {
+                    case 'R':
+                        action = UserAction.Reveal;
+                        break;
+                    case 'F':
+                        action = UserAction.Flag;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid action character.");
+                }
+            }
+            else if (actionStr.Equals("RF"))
+            {
+                action = UserAction.RemoveFlag;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid action string.");
+            }
 
             return new FieldInput(row, column, UserAction.Reveal);
         }
+
+
 
         /// <summary>
         /// Checks if the entered field input is valid.
