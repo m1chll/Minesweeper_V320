@@ -10,22 +10,17 @@ namespace Minesweeper
         private GameStatus gameStatus;
         public FieldInput currentFieldInput { get; set; }
 
-        public Game(string userName, string difficulty)
-        {
-            this.userName = userName;
-            this.difficulty = difficulty;
-        }
-
         public void PlayGame()
         {
-            Console.WriteLine("Willkommen bei Minesweeper, " + userName + "!");
-            Console.WriteLine("Schwierigkeitsgrad: " + difficulty);
+            UI ui = new UI();   
+            string difficulty = ui.GetDifficulty();
 
             GameboardCreator gameboardCreator = new GameboardCreator();
             gameboard = gameboardCreator.CreateGameboard(difficulty);
 
             gameStatus = GameStatus.Ongoing;
-            while (gameStatus == GameStatus.Ongoing)
+
+            while   (gameStatus == GameStatus.Ongoing)
             {
                 PrintGameboard();
                 ProcessPlayerInput();

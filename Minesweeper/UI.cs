@@ -80,12 +80,15 @@ namespace Minesweeper
         public string GetDifficulty()
         {
             string difficulty;
-            Console.WriteLine("Please enter your difficulty: ");
-            Console.WriteLine("H = Hard");
-            Console.WriteLine("M = Medium");
-            Console.WriteLine("E = Easy");
-            difficulty = Console.ReadLine();    
-            return difficulty;
+            while (difficulty != "H")
+            {
+                Console.WriteLine("Please enter your difficulty: ");
+                Console.WriteLine("H = Hard");
+                Console.WriteLine("M = Medium");
+                Console.WriteLine("E = Easy");
+                difficulty = Console.ReadLine();
+                return difficulty;
+            }
         }
 
         /// <summary>
@@ -168,7 +171,6 @@ namespace Minesweeper
         /// <param name="gameBoard">The game board to be printed.</param>
         private void PrintGameBoard(List<List<string>> gameBoard)
         {
-            Console.WriteLine("Gameboard:");
 
             for (int i = 0; i < gameBoard.Count; i++)
             {

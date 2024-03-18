@@ -33,7 +33,7 @@ namespace Minesweeper
 
         public List<List<string>> GetGameboard()
         {
-            // Rückgabe aktuelles Spielbrett
+           
             return gameboard;
         }
 
