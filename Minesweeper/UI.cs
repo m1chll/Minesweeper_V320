@@ -79,16 +79,24 @@ namespace Minesweeper
         /// <returns>The selected difficulty level.</returns>
         public string GetDifficulty()
         {
-            string difficulty;
-            while (difficulty != "H")
+            string difficulty = "";
+            Regex validInput = new Regex("^[EMH]$"); // Regex für E, M, oder H
+
+            while (!validInput.IsMatch(difficulty))
             {
                 Console.WriteLine("Please enter your difficulty: ");
                 Console.WriteLine("H = Hard");
                 Console.WriteLine("M = Medium");
                 Console.WriteLine("E = Easy");
-                difficulty = Console.ReadLine();
-                return difficulty;
+                difficulty = Console.ReadLine().ToUpper(); // Großbuchstaben, um auf Groß-/Kleinschreibung nicht zu achten
+
+                if (!validInput.IsMatch(difficulty))
+                {
+                    Console.WriteLine("Invalid input. Please enter E, M, or H.");
+                }
             }
+
+            return difficulty;
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Minesweeper
 {
@@ -35,6 +36,11 @@ namespace Minesweeper
         {
            
             return gameboard;
+        }
+
+        public void UpdateFields(FieldInput fieldInput)
+        {
+
         }
 
         internal Gameboard Clone()

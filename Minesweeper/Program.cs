@@ -7,12 +7,8 @@ namespace Minesweeper
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8; 
-            Console.WriteLine("😊😘🤣😁💣👍✌");
-
-
-            var game = new Game();
-            game.Start();
+            Game Game = new Game(); 
+            Game.PlayGame();
 
         }
     }
