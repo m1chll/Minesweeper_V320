@@ -34,18 +34,7 @@ namespace Minesweeper
             {
                 for (int j = 0; j < YSize; j++)
                 {
-                    if (Fields[i][j].IsVisible == true && Fields[i][j].HasFlag)
-                    {
-                        gameboard[i][j] = "🚩";
-                    }
-                    else if(Fields[i][j].IsVisible)
-                    {
-                        gameboard[i][j] = Convert.ToString(Fields[i][j].BombsAround);
-                    }
-                    else
-                    {
-                        gameboard[i][j] = "🧱";
-                    }
+                    gameboard[i][j] = Fields[i][j].GetValue();
                 }
             }
             return gameboard;
@@ -60,7 +49,31 @@ namespace Minesweeper
                 {
                     return GameStatus.Lost;
                 }
+                else if (!Fields[fieldInput.X][fieldInput.Y].HasFlag && !Fields[fieldInput.X][fieldInput.Y].IsVisible)
+                {
+                    RevealFields(fieldInput.X, fieldInput.Y);
+                    return GameStatus.Ongoing;
+                }
             }
+            else if(fieldInput.ActionType == UserAction.Flag)
+            {
+                if(!Fields[fieldInput.X][fieldInput.Y].IsVisible)
+                {
+                    Fields[fieldInput.X][fieldInput.Y].HasFlag = true;
+                    return GameStatus.Ongoing;
+                }
+            }
+            else if(fieldInput.ActionType == UserAction.RemoveFlag)
+            {
+                if (Fields[fieldInput.X][fieldInput.Y].HasFlag)
+                {
+                    Fields[fieldInput.X][fieldInput.Y].HasFlag = false;
+                    return GameStatus.Ongoing;
+                }
+
+            }
+            return GameStatus.Ongoing;
+
 
         }
 
@@ -69,9 +82,33 @@ namespace Minesweeper
             throw new NotImplementedException();
         }
 
-        private void RevealFieldsArround(int xCoordinate, int yCoordinate)
+        private void RevealFields(int xCoordinate, int yCoordinate)
         {
+            Fields[xCoordinate][yCoordinate].IsVisible = true;
 
+            if (Fields[xCoordinate][yCoordinate].HasFlag || Fields[xCoordinate][yCoordinate].IsBomb || Fields[xCoordinate][yCoordinate].IsVisible)
+            {
+                return;
+            }
+
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
+
+                    int newX = xCoordinate + x;
+                    int newY = yCoordinate + y;
+
+                    if (newX >= 0 && newX < XSize && newY >= 0 && newY < YSize)
+                    {
+                        if (!Fields[newX][newY].IsBomb && !Fields[newX][newY].HasFlag && !Fields[newX][newY].IsVisible)
+                        {
+                            RevealFields(newX, newY);
+                        }
+                    }
+                }
+            }
         }
     }
 }

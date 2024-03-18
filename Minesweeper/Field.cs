@@ -14,5 +14,22 @@ public class Field
     public bool IsBomb { get; set; } = false;
     public bool HasFlag { get; set; } = false;
     public bool IsVisible { get; set; } = false;
-    public int BombsAround { get; set; }        
+    public int BombsAround { get; set; }
+    private string Value { get; set; }
+    
+    public string GetValue()
+    {
+        if (HasFlag)
+        {
+            return "🚩";
+        }
+        else if (IsVisible)
+        {
+            return Convert.ToString(BombsAround);
+        }
+        else
+        {
+            return "🧱";
+        }
+    }
 }
