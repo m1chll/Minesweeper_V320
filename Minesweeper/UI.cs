@@ -130,7 +130,7 @@ namespace Minesweeper
             int row = int.Parse(input.Substring(1, input.Length - 2));
             char action = input[input.Length - 1];
 
-            return new FieldInput(row, column, action);
+            return new FieldInput(row, column, UserAction.Reveal);
         }
 
         /// <summary>
