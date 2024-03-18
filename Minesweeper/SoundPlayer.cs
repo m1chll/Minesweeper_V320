@@ -1,42 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NAudio.Wave;
+using System;
 
 namespace Minesweeper
 {
     public class SoundPlayer
     {
-        public string startGameSoundPath { get; set; }
-        public string exitGameSoundPath { get; set; }
-        public string gameOverSoundPath { get; set; }
-        public string gameWonSoundPath { get; set; }
+        public string StartGameSoundPath { get; set; }
+        public string ExitGameSoundPath { get; set; }
+        public string GameOverSoundPath { get; set; }
+        public string GameWonSoundPath { get; set; }
+
+        private WaveOutEvent outputDevice;
+
+        public SoundPlayer()
+        {
+            outputDevice = new WaveOutEvent();
+        }
 
         public void PlaySound(string soundPath)
         {
             if (!string.IsNullOrEmpty(soundPath))
             {
-                using (var player = new System.Media.SoundPlayer(soundPath))
+                try
                 {
-                    player.Play();
+                    var audioFileReader = new AudioFileReader(soundPath);
+                    outputDevice.Init(audioFileReader);
+                    outputDevice.Play();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error playing sound: {ex.Message}");
                 }
             }
             else
             {
-                // Falls Pfad leer/ungültig
-                throw new ArgumentException("Der Soundpfad ist ungültig oder leer");
+                throw new ArgumentException("The sound path is invalid or empty");
             }
         }
 
         public void WinSound()
         {
-            PlaySound(@"C:/Users/carin/OneDrive - Kt.SG BLD/Dokumente/Informatik - Module/Informatik - Module/V320/Sounds/WinSound.wav");
+            PlaySound(@"Sounds/GameWon.mp3");
         }
 
         public void LoseSound()
         {
-            PlaySound(@"C:/Users/carin/OneDrive - Kt.SG BLD/Dokumente/Informatik - Module/Informatik - Module/V320/Sounds/LoseSound.wav");
+            PlaySound(@"Sounds/GameLost.mp3");
+        }
+
+        public void PauseGame()
+        {
+            PlaySound(@"Sounds/PauseSound.mp3");
+        }
+
+        public void StartGame()
+        {
+            PlaySound(@"Sounds/StartGame.mp3");
+        }
+
+        public void AlmostReady()
+        {
+            PlaySound(@"Sounds/FinishHim.mp3");
         }
     }
 }
