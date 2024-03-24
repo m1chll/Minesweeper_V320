@@ -74,7 +74,7 @@ namespace Minesweeper
 
             if(fieldInput.ActionType == FieldInput.UserAction.Reveal)
             {
-                if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].isBomb)
+                if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsBomb)
                 {
                     return GameStatus.Lost;
                 }

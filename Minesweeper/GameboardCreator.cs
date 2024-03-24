@@ -41,9 +41,9 @@ namespace Minesweeper
                 int x = random.Next(gameboard.XSize);
                 int y = random.Next(gameboard.YSize);
 
-                if (!gameboard.Fields[x][y].isBomb)
+                if (!gameboard.Fields[x][y].IsBomb)
                 {
-                    gameboard.Fields[x][y].isBomb = true;
+                    gameboard.Fields[x][y].IsBomb = true;
                     bombsPlaced++;
                 }
             }
