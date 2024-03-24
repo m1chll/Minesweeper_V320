@@ -168,13 +168,6 @@ namespace Minesweeper
             if (input.Length < 3)
                 return false;
 
-            if (!char.IsLetter(input[0]) || !char.IsDigit(input[1]))
-                return false;
-
-            char action = char.ToUpper(input[input.Length - 1]);
-            if (action != 'R' && action != 'F' && action != 'D')
-                return false;
-
             return true;
         }
 
