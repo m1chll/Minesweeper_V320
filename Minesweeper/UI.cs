@@ -150,7 +150,7 @@ namespace Minesweeper
                 _ => FieldInput.UserAction.Reveal,
             };
 
-            FieldInput fieldInput = new FieldInput(yCoordinate, xCoordinate, enumValue);
+            FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
             return fieldInput;
         }
 

@@ -43,7 +43,12 @@ namespace Minesweeper
                 GameboardUI = Gameboard.GetGameboard();
                 ui.PrintGame(GameboardUI);
                 CurrentFieldInput = ui.GetFieldUpdate();
-                Gameboard.UpdateFields(CurrentFieldInput);
+                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
+            }
+            if (GameStatus == GameStatus.Lost)
+
+            {
+                ui.PrintGameLost();
             }
         }
     }

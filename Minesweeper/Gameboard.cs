@@ -109,8 +109,6 @@ namespace Minesweeper
 
             }
             return GameStatus.Ongoing;
-
-
         }
 
         internal Gameboard Clone()
