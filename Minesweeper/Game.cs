@@ -12,6 +12,7 @@ namespace Minesweeper
         private string userName;
         private string difficulty;
         private Gameboard Gameboard;
+        private GameboardCaretaker GameboardCaretaker;
 
         /// <summary>
         /// Gets or sets the status of the game.
@@ -37,6 +38,7 @@ namespace Minesweeper
             UI = new UI();
             UI.PrintStartScreen();
             string difficulty = UI.GetDifficulty();
+            GameboardCaretaker = new GameboardCaretaker();  
 
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
@@ -47,16 +49,16 @@ namespace Minesweeper
             {
                 GameboardUI = Gameboard.GetGameboard();
                 UI.PrintGame(GameboardUI, Gameboard.BombCount, Gameboard.FlagCount);
+                GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
                 ValidateUserInput();
 ;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
-
             {
                 UI.PrintGameLost();
             }
-            if (GameStatus == GameStatus.Won)
+            else if (GameStatus == GameStatus.Won)
             {
                 UI.PrintGameWon();
             }
@@ -71,9 +73,18 @@ namespace Minesweeper
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
-            else if(CurrentFieldInput.Undo == true) 
+            else if (CurrentFieldInput.Undo == true)
             {
-
+                var prevState = GameboardCaretaker.RestoreState();
+                if (prevState != null)
+                {
+                    Gameboard.Fields = prevState;
+                    GameStatus = GameStatus.Ongoing;
+                }
+            }
+            else
+            {
+                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
         }
     }
