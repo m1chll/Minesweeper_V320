@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Minesweeper
 {
     public class Gameboard
     {
+
         public int XSize { get; set; }
-        public int YSize { get; set; } 
+        public int YSize { get; set; }
 
         public int FlagCount { get; set; }
         public int BombCount { get; set; }
@@ -17,7 +16,18 @@ namespace Minesweeper
         public int Columns { get { return Fields.Count > 0 ? Fields[0].Count : 0; } } // Anzahl der Spalten
 
         public List<List<Field>> Fields { get; set; }
-        public List<List<string>> gameboard { get; set; }
+
+        private List<List<string>> gameboard;
+
+        public List<List<string>> GetGameboard1()
+        {
+            return gameboard;
+        }
+
+        public void SetGameboard1(List<List<string>> value)
+        {
+            gameboard = value;
+        }
 
         public void CreateFields(int xSize, int ySize)
         {
@@ -44,11 +54,10 @@ namespace Minesweeper
             }
         }
 
-
         public List<List<string>> GetGameboard()
         {
             // Initialisieren der äußeren Liste
-            gameboard = new List<List<string>>();
+            SetGameboard1(new List<List<string>>());
 
             for (int i = 0; i < XSize; i++)
             {
@@ -63,17 +72,15 @@ namespace Minesweeper
                 }
 
                 // Hinzufügen der inneren Liste zur äußeren Liste
-                gameboard.Add(row);
+                GetGameboard1().Add(row);
             }
 
-            return gameboard;
+            return GetGameboard1();
         }
-
 
         public GameStatus UpdateFields(FieldInput fieldInput)
         {
-
-            if(fieldInput.ActionType == FieldInput.UserAction.Reveal)
+            if (fieldInput.ActionType == FieldInput.UserAction.Reveal)
             {
                 if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsBomb)
                 {
@@ -84,33 +91,24 @@ namespace Minesweeper
                     RevealFields(fieldInput.XCoordinate, fieldInput.YCoordinate);
                     return GameStatus.Ongoing;
                 }
-            } 
-            else if(fieldInput.ActionType == FieldInput.UserAction.Flag && FlagCount < BombCount - 1)
+            }
+            else if (fieldInput.ActionType == FieldInput.UserAction.Flag && FlagCount < BombCount)
             {
-                if(!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible)
+                if (!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible && !Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag)
                 {
                     Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = true;
-                    FlagCount++;
+                    FlagCount++; // Erhöhen Sie die FlagCount nur hier um 1
                     return GameStatus.Ongoing;
                 }
             }
-            else if(fieldInput.ActionType == FieldInput.UserAction.Flag && FlagCount == BombCount - 1)
-            {
-                if (!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible)
-                {
-                    Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = true;
-                    FlagCount++;
-                    return GameStatus.Won;
-                }
-            }
-            else if(fieldInput.ActionType == FieldInput.UserAction.RemoveFlag)
+            else if (fieldInput.ActionType == FieldInput.UserAction.RemoveFlag)
             {
                 if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag)
                 {
                     Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = false;
+                    FlagCount--; // Verringern Sie die FlagCount hier um 1, wenn die Flagge entfernt wird
                     return GameStatus.Ongoing;
                 }
-
             }
             return GameStatus.Ongoing;
         }
@@ -123,7 +121,6 @@ namespace Minesweeper
             }
 
             Fields[xCoordinate][yCoordinate].IsVisible = true;
-
 
             for (int x = -1; x <= 1; x++)
             {

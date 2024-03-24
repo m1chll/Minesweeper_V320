@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Transactions;
 
@@ -21,7 +22,7 @@ namespace Minesweeper
 
         private List<List<string>> GameboardUI { get; set; }
 
-        private UI UI {  get; set; }
+        private UI UI { get; set; }
 
         /// <summary>
         /// Gets or sets the current field input for the game.
@@ -38,7 +39,7 @@ namespace Minesweeper
             UI = new UI();
             UI.PrintStartScreen();
             string difficulty = UI.GetDifficulty();
-            GameboardCaretaker = new GameboardCaretaker();  
+            GameboardCaretaker = new GameboardCaretaker();
 
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
@@ -52,7 +53,7 @@ namespace Minesweeper
                 GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
                 ValidateUserInput();
-;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
+                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
             {
@@ -66,7 +67,7 @@ namespace Minesweeper
 
         private void ValidateUserInput()
         {
-            if(CurrentFieldInput.GamePause == true)
+            if (CurrentFieldInput.GamePause == true)
             {
                 GameStatus = GameStatus.Paused;
                 UI.MakePause();
