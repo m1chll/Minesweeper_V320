@@ -69,11 +69,9 @@ namespace Minesweeper
                 input = Console.ReadLine();
                 if (input == "1")
                 {
-                    Console.Clear();
                     break;
                 }
             }
-            Console.Clear();
         }
 
         /// <summary>
@@ -87,7 +85,6 @@ namespace Minesweeper
 
             while (!validInput.IsMatch(difficulty))
             {
-                Console.Clear();
                 Console.WriteLine("Please enter your difficulty: ");
                 Console.WriteLine("E = Easy");
                 Console.WriteLine("M = Medium");
@@ -152,6 +149,7 @@ namespace Minesweeper
             };
 
             FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
+
             return fieldInput;
         }
 
@@ -166,17 +164,18 @@ namespace Minesweeper
         /// <returns>True if the input is valid, otherwise false.</returns>
         public bool CheckFieldInput(string input)
         {
-            if (input.Length > 4)
-            {
-                return false;
-            }
-
             if (input == "P")
             {
                 MakePause();
                 return false;
             }
+            
+            Regex rg = new Regex(@"([A-Z](2[0-6]|1[0-9]|[1-9])(RF|R|F))|((2[0-6]|1[0-9]|[1-9])[A-Z](RF|R|F))");
 
+            if (input.Length < 3 || input.Length > 5 | rg.IsMatch(input) != true)
+            {
+                return false;
+            }
             return true;
         }
 
