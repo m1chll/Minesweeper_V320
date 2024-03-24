@@ -57,8 +57,25 @@ namespace Minesweeper.Test
             }
         }
 
-        // Method to invoke the method being tested
-        private string GetDifficulty()
+        [TestMethod]
+        public void GetDifficulty_InvalidInput_NothingHappens()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Console.SetIn(new StringReader("X\n")); // Providing invalid input "X"
+
+                // Invoke the method
+                GetDifficulty();
+
+                // Assert that the prompt message is written to the console output
+                Assert.AreEqual("Please enter your difficulty: \r\nE = Easy\r\nM = Medium\r\nH = Hard\r\n", sw.ToString());
+            }
+
+        }
+
+            // Method to invoke the method being tested
+            private string GetDifficulty()
         {
             Console.WriteLine("Please enter your difficulty: ");
             Console.WriteLine("E = Easy");
@@ -70,6 +87,8 @@ namespace Minesweeper.Test
 
             return difficulty;
         }
+
+      
 
     }
 }

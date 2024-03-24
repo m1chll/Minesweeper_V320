@@ -11,8 +11,8 @@ namespace Minesweeper
     /// </summary>
     public class Field
     {
-        internal bool isBomb;
-        internal int bombsAround;
+        public bool isBomb;
+        public int bombsAround;
 
         /// <summary>
         /// Gets or sets a value indicating whether the field contains a bomb.
