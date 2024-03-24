@@ -8,26 +8,6 @@ namespace Minesweeper
     /// </summary>
     public class SoundPlayer
     {
-        /// <summary>
-        /// Gets or sets the file path for the sound played at the start of the game.
-        /// </summary>
-        public string StartGameSoundPath { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file path for the sound played when exiting the game.
-        /// </summary>
-        public string ExitGameSoundPath { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file path for the sound played when the game is over.
-        /// </summary>
-        public string GameOverSoundPath { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file path for the sound played when the game is won.
-        /// </summary>
-        public string GameWonSoundPath { get; set; }
-
         private WaveOutEvent outputDevice;
 
         /// <summary>
