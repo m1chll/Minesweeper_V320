@@ -138,31 +138,32 @@ namespace Minesweeper
                 return(inputPause);
             }
             else
-
-            int fieldInputLength = fieldInputString.Length;
-
-            Match xMatch = Regex.Match(fieldInputString, @"[A-Z]");
-            char yChar = Convert.ToChar(xMatch.Value);
-            int yCoordinate = (int)yChar - 65;
-
-
-            Match yMatch = Regex.Match(fieldInputString, @"\d{1,2}");
-            int xCoordinate = Convert.ToInt32(yMatch.Value) - 1;
-
-            Match actionMatch = Regex.Match(fieldInputString, @"(RF|R|F)$");
-            string action = actionMatch.Value;
-
-            var enumValue = action switch
             {
-                "R" => FieldInput.UserAction.Reveal,
-                "F" => FieldInput.UserAction.Flag,
-                "RF" => FieldInput.UserAction.RemoveFlag,
-                _ => FieldInput.UserAction.Reveal,
-            };
+                int fieldInputLength = fieldInputString.Length;
 
-            FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
+                Match xMatch = Regex.Match(fieldInputString, @"[A-Z]");
+                char yChar = Convert.ToChar(xMatch.Value);
+                int yCoordinate = (int)yChar - 65;
 
-            return fieldInput;
+
+                Match yMatch = Regex.Match(fieldInputString, @"\d{1,2}");
+                int xCoordinate = Convert.ToInt32(yMatch.Value) - 1;
+
+                Match actionMatch = Regex.Match(fieldInputString, @"(RF|R|F)$");
+                string action = actionMatch.Value;
+
+                var enumValue = action switch
+                {
+                    "R" => FieldInput.UserAction.Reveal,
+                    "F" => FieldInput.UserAction.Flag,
+                    "RF" => FieldInput.UserAction.RemoveFlag,
+                    _ => FieldInput.UserAction.Reveal,
+                };
+
+                FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
+
+                return fieldInput;
+            }
         }
 
 
@@ -176,15 +177,12 @@ namespace Minesweeper
         /// <returns>True if the input is valid, otherwise false.</returns>
         public bool CheckFieldInput(string input)
         {
-            if (input == "P")
-            {
-                MakePause();
-                return false;
-            }
-
             Regex rg = new Regex(@"([A-Z](2[0-6]|1[0-9]|[1-9])(RF|R|F))|((2[0-6]|1[0-9]|[1-9])[A-Z](RF|R|F))");
-
-            if (input.Length < 3 || input.Length > 5 | rg.IsMatch(input) != true)
+            if (Regex.IsMatch(input, "[UuPp]"))
+            {
+                return true;
+            }
+            else if (input.Length < 3 || input.Length > 5 | rg.IsMatch(input) != true)
             {
                 return false;
             }
