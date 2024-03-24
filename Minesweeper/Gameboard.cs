@@ -12,6 +12,9 @@ namespace Minesweeper
         public int FlagCount { get; set; }
         public int BombCount { get; set; }
 
+        public int Rows { get { return Fields.Count; } } // Anzahl der Zeilen
+        public int Columns { get { return Fields.Count > 0 ? Fields[0].Count : 0; } } // Anzahl der Spalten
+
         public List<List<Field>> Fields { get; set; }
         public List<List<string>> gameboard { get; set; }
 
