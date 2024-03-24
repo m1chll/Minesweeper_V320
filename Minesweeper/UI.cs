@@ -179,7 +179,7 @@ namespace Minesweeper
             return true;
         }
 
-        private void MakePause()
+        public void MakePause()
         {
             string input;
             do

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http.Headers;
+using System.Transactions;
 
 namespace Minesweeper
 {
@@ -18,6 +20,8 @@ namespace Minesweeper
 
         private List<List<string>> GameboardUI { get; set; }
 
+        private UI UI {  get; set; }
+
         /// <summary>
         /// Gets or sets the current field input for the game.
         /// </summary>
@@ -30,9 +34,9 @@ namespace Minesweeper
         public void PlayGame()
         {
             Gameboard = new Gameboard();
-            UI ui = new UI();
-            ui.PrintStartScreen();
-            string difficulty = ui.GetDifficulty();
+            UI = new UI();
+            UI.PrintStartScreen();
+            string difficulty = UI.GetDifficulty();
 
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
@@ -42,23 +46,35 @@ namespace Minesweeper
             while (GameStatus == GameStatus.Ongoing)
             {
                 GameboardUI = Gameboard.GetGameboard();
-                ui.PrintGame(GameboardUI, Gameboard.BombCount, Gameboard.FlagCount);
-                CurrentFieldInput = ui.GetFieldUpdate();
-                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
+                UI.PrintGame(GameboardUI, Gameboard.BombCount, Gameboard.FlagCount);
+                CurrentFieldInput = UI.GetFieldUpdate();
+                ValidateUserInput();
+;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
 
             {
-                ui.PrintGameLost();
+                UI.PrintGameLost();
+            }
+            if (GameStatus == GameStatus.Won)
+            {
+                UI.PrintGameWon();
             }
         }
 
-        enum Status
+        private void ValidateUserInput()
         {
-            Won,
-            Lost,
-            Ongoing,
-            Paused
+            if(CurrentFieldInput.GamePause == true)
+            {
+                GameStatus = GameStatus.Paused;
+                UI.MakePause();
+                GameStatus = GameStatus.Ongoing;
+                CurrentFieldInput = UI.GetFieldUpdate();
+            }
+            else if(CurrentFieldInput.Undo == true) 
+            {
+
+            }
         }
     }
 }
