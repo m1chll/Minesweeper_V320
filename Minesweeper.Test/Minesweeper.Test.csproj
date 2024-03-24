@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Minesweeper.Logic\Minesweeper.Logic.csproj" />
+    <ProjectReference Include="..\Minesweeper\Minesweeper.csproj" />
   </ItemGroup>
 
 </Project>
