@@ -118,12 +118,13 @@ namespace Minesweeper
 
         private void RevealFields(int xCoordinate, int yCoordinate)
         {
-            Fields[xCoordinate][yCoordinate].IsVisible = true;
-
-            if (Fields[xCoordinate][yCoordinate].HasFlag || Fields[xCoordinate][yCoordinate].IsBomb || Fields[xCoordinate][yCoordinate].IsVisible)
+            if (Fields[xCoordinate][yCoordinate].HasFlag || Fields[xCoordinate][yCoordinate].IsBomb)
             {
                 return;
             }
+
+            Fields[xCoordinate][yCoordinate].IsVisible = true;
+
 
             for (int x = -1; x <= 1; x++)
             {

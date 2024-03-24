@@ -46,7 +46,7 @@ namespace Minesweeper
             {
                 return "F";
             }
-            else if (IsVisible)
+            else if (IsVisible && !isBomb)
             {
                 return Convert.ToString(BombsAround);
             }
