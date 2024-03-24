@@ -57,4 +57,39 @@
 5. **Berichterstattung:**
    - Die Tests wurden erfolgreich ausgeführt!
 
+# Testkonzept für Minesweeper
+
+## Ziel des Testkonzepts:
+Das Testkonzept zielt darauf ab, sicherzustellen, dass alle wichtigen Funktionen des Minesweeper-Spiels korrekt implementiert und getestet wurden. Dies umfasst die Überprüfung der Benutzereingaben, die Spiellogik und die Gewinn- bzw. Verlierungsbedingungen.
+
+## Testkonzept für die Überprüfung des Spielstates in Minesweeper:
+
+1. **Test der Schwierigkeitsauswahl:**
+   - Überprüfen, ob die Schwierigkeitsauswahl korrekt verarbeitet wird und das Spielfeld entsprechend der ausgewählten Schwierigkeit generiert wird.
+
+2. **Test der Spielfeldgenerierung:**
+   - Überprüfen, ob das Spielfeld korrekt generiert wird und die Anzahl der Bomben sowie die Positionen der Bomben den Schwierigkeitsparametern entsprechen.
+
+3. **Test der Benutzereingaben:**
+   - Überprüfen, ob die Benutzereingaben zum Aufdecken von Feldern, Platzieren von Flaggen und Entfernen von Flaggen korrekt verarbeitet werden.
+
+4. **Test der Gewinnbedingung:**
+   - Überprüfen, ob das Spiel korrekt als gewonnen erkannt wird, wenn alle nicht-bombigen Felder aufgedeckt wurden und alle Bomben korrekt markiert wurden.
+
+5. **Test der Verlierungsbedingung:**
+   - Überprüfen, ob das Spiel korrekt als verloren erkannt wird, wenn ein Feld mit einer Bombe aufgedeckt wird.
+
+## Testumgebung:
+- Verwendung einer Unit-Test-Bibliothek wie NUnit.
+- Verwendung von Mocking-Frameworks für die Simulation von Benutzereingaben und -ausgaben.
+- Einrichtung einer Testumgebung, die es ermöglicht, das Spiel in einer kontrollierten Umgebung zu testen.
+
+## Testdurchführung:
+- Jeder Testfall wird unabhängig voneinander durchgeführt.
+- Die erwarteten Ergebnisse werden mit den tatsächlichen Ergebnissen verglichen, und bei Übereinstimmung wird der Testfall als erfolgreich markiert.
+- Alle Tests werden automatisiert durchgeführt, um die Konsistenz und Wiederholbarkeit der Tests sicherzustellen.
+
+## Berichterstattung:
+- Die Testergebnisse werden dokumentiert und zusammengefasst, um einen klaren Überblick über den Teststatus des Spiels zu geben.
+- Fehler werden protokolliert und bei Bedarf an das Entwicklungsteam zurückgemeldet, um Korrekturen vorzunehmen.
 
