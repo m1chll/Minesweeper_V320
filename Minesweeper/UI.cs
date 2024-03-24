@@ -135,6 +135,7 @@ namespace Minesweeper
             Match xMatch = Regex.Match(fieldInputString, @"[A-Z]");
             char yChar = Convert.ToChar(xMatch.Value);
             int yCoordinate = (int)yChar - 65;
+ 
 
             Match yMatch = Regex.Match(fieldInputString, @"\d{1,2}");
             int xCoordinate = Convert.ToInt32(yMatch.Value) - 1;
@@ -154,7 +155,7 @@ namespace Minesweeper
             return fieldInput;
         }
 
-
+         
 
 
 
@@ -170,8 +171,25 @@ namespace Minesweeper
                 return false;
             }
 
+            if (input == "P")
+            {
+                MakePause();
+                return false;
+            }
+
             return true;
         }
+
+        private void MakePause()
+        {
+            string input;
+            do
+            {
+                Console.WriteLine("Press C to continue!");
+                input = Console.ReadLine();
+            } while (input != "C" && input != "c");
+        }
+
 
         /// <summary>
         /// Prints the current game board.
