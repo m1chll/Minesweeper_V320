@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Minesweeper {
+namespace Minesweeper
+{
     public class GameboardCreator
     {
-        private Gameboard Gameboard { get; set; } = new Gameboard();
-
         public Gameboard CreateGameboard(string difficultyString)
         {
-
-            
-            IStrategy difficulty; 
-
-            switch (difficultyString)
+            IStrategy difficulty;
+            switch (difficultyString.ToUpper())
             {
                 case "H":
                     difficulty = new StrategyHard();
@@ -29,40 +21,49 @@ namespace Minesweeper {
                     break;
             }
 
+            Gameboard gameboard = new Gameboard();
+            gameboard.CreateFields(difficulty.XSize, difficulty.YSize);
 
+            AddBombs(gameboard, difficulty.NumberOfBombs);
 
-            Gameboard.CreateFields(difficulty.XSize, difficulty.YSize);
+            CalculateBombsAround(gameboard);
 
+            gameboard.BombCount = difficulty.NumberOfBombs;
+            return gameboard;
+        }
+
+        private void AddBombs(Gameboard gameboard, int numberOfBombs)
+        {
             Random random = new Random();
             int bombsPlaced = 0;
-            while (bombsPlaced < difficulty.NumberOfBombs)
+            while (bombsPlaced < numberOfBombs)
             {
-                int x = random.Next(difficulty.XSize);
-                int y = random.Next(difficulty.YSize);
+                int x = random.Next(gameboard.XSize);
+                int y = random.Next(gameboard.YSize);
 
-                if (!Gameboard.Fields[x][y].isBomb)
+                if (!gameboard.Fields[x][y].isBomb)
                 {
-                    Gameboard.Fields[x][y].isBomb = true;
+                    gameboard.Fields[x][y].isBomb = true;
                     bombsPlaced++;
                 }
             }
+        }
 
-            for (int i = 0; i < difficulty.XSize; i++)
+        private void CalculateBombsAround(Gameboard gameboard)
+        {
+            for (int i = 0; i < gameboard.XSize; i++)
             {
-                for (int j = 0; j < difficulty.YSize; j++)
+                for (int j = 0; j < gameboard.YSize; j++)
                 {
-                    if (!Gameboard.Fields[i][j].isBomb)
+                    if (!gameboard.Fields[i][j].isBomb)
                     {
-                        Gameboard.Fields[i][j].bombsAround = CalculateBombsAround(i, j);
+                        gameboard.Fields[i][j].bombsAround = CountBombsAround(gameboard, i, j);
                     }
                 }
             }
-
-            Gameboard.BombCount = difficulty.NumberOfBombs;
-            return Gameboard;
         }
 
-        private int CalculateBombsAround(int x, int y)
+        private int CountBombsAround(Gameboard gameboard, int x, int y)
         {
             int bombsAround = 0;
 
@@ -70,7 +71,7 @@ namespace Minesweeper {
             {
                 for (int j = y - 1; j <= y + 1; j++)
                 {
-                    if (i >= 0 && i < Gameboard.Fields.Count && j >= 0 && j < Gameboard.Fields[i].Count && Gameboard.Fields[i][j].isBomb)
+                    if (i >= 0 && i < gameboard.XSize && j >= 0 && j < gameboard.YSize && gameboard.Fields[i][j].isBomb)
                     {
                         bombsAround++;
                     }
@@ -79,6 +80,4 @@ namespace Minesweeper {
             return bombsAround;
         }
     }
-
-
 }

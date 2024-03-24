@@ -23,6 +23,7 @@ namespace Minesweeper
         /// </summary>
         public FieldInput CurrentFieldInput { get; set; }
 
+
         /// <summary>
         /// Plays the Minesweeper game.
         /// </summary>
