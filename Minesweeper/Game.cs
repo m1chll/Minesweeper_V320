@@ -2,15 +2,30 @@
 
 namespace Minesweeper
 {
+    /// <summary>
+    /// Represents a Minesweeper game.
+    /// </summary>
     public class Game
     {
         private string userName;
         private string difficulty;
         private Gameboard Gameboard;
+
+        /// <summary>
+        /// Gets or sets the status of the game.
+        /// </summary>
         public GameStatus GameStatus { get; set; }
+
         private List<List<string>> GameboardUI { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current field input for the game.
+        /// </summary>
         public FieldInput CurrentFieldInput { get; set; }
 
+        /// <summary>
+        /// Plays the Minesweeper game.
+        /// </summary>
         public void PlayGame()
         {
             Gameboard = new Gameboard();

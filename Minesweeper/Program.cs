@@ -11,7 +11,6 @@ namespace Minesweeper
             Console.WriteLine("test");
             Game Game = new Game(); 
             Game.PlayGame();
-
         }
     }
 }
