@@ -127,7 +127,7 @@ namespace Minesweeper
                 Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':");
                 fieldInputString = Console.ReadLine();
                 fieldInputString = fieldInputString.ToUpper();
-                inputCorrect = FieldInput.CheckFieldInput(fieldInputString);
+                inputCorrect = CheckFieldInput(fieldInputString);
             } while (!inputCorrect);
 
             int fieldInputLength = fieldInputString.Length;
@@ -165,8 +165,10 @@ namespace Minesweeper
         /// <returns>True if the input is valid, otherwise false.</returns>
         public bool CheckFieldInput(string input)
         {
-            if (input.Length < 3)
+            if (input.Length > 4)
+            {
                 return false;
+            }
 
             return true;
         }
