@@ -79,3 +79,28 @@
 5. **Berichterstattung:**
    - Die Tests wurden erfolgreich ausgeführt!
 
+## Testkonzept für die Minesweeper-Spielmechanik:
+
+1. **Ziel des Tests:**
+   - Überprüfen, ob die Spielmechanik korrekt funktioniert und die verschiedenen Aktionen wie das Aufdecken von Feldern, das Platzieren und Entfernen von Flaggen ordnungsgemäß durchgeführt werden.
+
+2. **Testfälle:**
+   a. **TestRevealField_SuccessfulReveal:**
+      - Beschreibung: Überprüfen, ob das Spiel den richtigen Status zurückgibt, nachdem ein Feld aufgedeckt wurde.
+   b. **TestPlaceFlag_FlagPlacedSuccessfully:**
+      - Beschreibung: Überprüfen, ob das Spielbrett eine Flagge erfolgreich platziert, wenn die entsprechende Aktion ausgeführt wird.
+   c. **TestRemoveFlag_FlagRemovedSuccessfully:**
+      - Beschreibung: Überprüfen, ob das Spielbrett eine Flagge erfolgreich entfernt, wenn die entsprechende Aktion ausgeführt wird.
+
+3. **Testumgebung:**
+   - Verwendung einer Unit-Test-Bibliothek (z. B. NUnit).
+   - Instanziierung eines Gameboard-Objekts für die Durchführung der Tests.
+   - Erstellung eines Spielbretts mit unterschiedlichen Konfigurationen für jeden Testfall.
+
+4. **Testdurchführung:**
+   - Für jeden Testfall wird die entsprechende Aktion ausgeführt (Aufdecken eines Feldes, Platzieren oder Entfernen einer Flagge).
+   - Das Ergebnis der Aktion wird überprüft, um sicherzustellen, dass das erwartete Verhalten vorliegt.
+
+5. **Berichterstattung:**
+   - Die Tests wurden erfolgreich ausgeführt und das Spielverhalten wurde wie erwartet validiert.
+
