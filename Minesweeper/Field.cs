@@ -52,7 +52,7 @@ namespace Minesweeper
             }
             else
             {
-                return "🧱";
+                return "X";
             }
         }
     }

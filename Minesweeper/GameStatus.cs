@@ -1,10 +1,11 @@
 ﻿namespace Minesweeper
 {
-    public class GameStatus
+    public enum GameStatus
     {
-        public static GameStatus Won { get; internal set; }
-        public static GameStatus Lost { get; internal set; }
-        public static GameStatus Paused { get; internal set; }
-        public static GameStatus Ongoing { get; internal set; }
+        Won,
+        Lost,
+        Ongoing,
+        Paused
+
     }
 }
