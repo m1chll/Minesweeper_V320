@@ -77,7 +77,7 @@ namespace Minesweeper
                     }
                 }
             }
-            return bombsAround;
+            return bombsAround; 
         }
     }
 }
