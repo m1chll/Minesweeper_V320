@@ -48,7 +48,7 @@ namespace Minesweeper
         /// </summary>
         public void WinSound()
         {
-            PlaySound(@"sounds/GameWon.mp3");
+            PlaySound(@"Sounds/GameWon.mp3");
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Minesweeper
         /// </summary>
         public void PauseGame()
         {
-            PlaySound(@"sounds/PauseSound.mp3");
+            PlaySound(@"Sounds/PauseSound.mp3");
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Minesweeper
         /// </summary>
         public void StartGame()
         {
-            PlaySound(@"sounds/StartGame.mp3");
+            PlaySound(@"Sounds/StartGame.mp3");
         }
 
         /// <summary>
