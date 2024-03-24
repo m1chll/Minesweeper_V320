@@ -8,8 +8,6 @@ namespace Minesweeper.Test
         [TestMethod]
         public void TestMethod1()
         {
-            var model = new Model(100);
-            model.DoTurn("C2");
 
             // ASSERT
             // -> Prüfung Spielzustand

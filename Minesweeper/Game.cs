@@ -41,7 +41,7 @@ namespace Minesweeper
             while (GameStatus == GameStatus.Ongoing)
             {
                 GameboardUI = Gameboard.GetGameboard();
-                ui.PrintGame(GameboardUI);
+                ui.PrintGame(GameboardUI, Gameboard.BombCount, Gameboard.FlagCount);
                 CurrentFieldInput = ui.GetFieldUpdate();
                 GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
@@ -50,6 +50,14 @@ namespace Minesweeper
             {
                 ui.PrintGameLost();
             }
+        }
+
+        enum Status
+        {
+            Won,
+            Lost,
+            Ongoing,
+            Paused
         }
     }
 }

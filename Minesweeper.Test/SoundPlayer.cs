@@ -17,9 +17,9 @@ namespace Minesweeper
         {
             if (!string.IsNullOrEmpty(soundPath))
             {
-                using (var player = new System.Media.SoundPlayer(soundPath))
+                //using (var player = new System.Media.SoundPlayer(soundPath))
                 {
-                    player.Play();
+                    //player.Play();
                 }
             }
             else
