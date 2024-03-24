@@ -123,21 +123,20 @@ namespace Minesweeper
 
             do
             {
-                Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':\"");
+                Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':");
                 fieldInputString = Console.ReadLine();
                 fieldInputString = fieldInputString.ToUpper();
-                inputCorrect = CheckFieldInput(fieldInputString);
-            } while (inputCorrect == false);
+                inputCorrect = FieldInput.CheckFieldInput(fieldInputString);
+            } while (!inputCorrect);
 
             int fieldInputLength = fieldInputString.Length;
 
-            Match yMatch = Regex.Match(fieldInputString, @"[A-Z]");
-            char xChar = Convert.ToChar(yMatch.Value);
-            int xCoordinate = (int)xChar - 65;
+            Match xMatch = Regex.Match(fieldInputString, @"[A-Z]");
+            char yChar = Convert.ToChar(xMatch.Value);
+            int yCoordinate = (int)yChar - 65;
 
-
-            Match xMatch = Regex.Match(fieldInputString, @"\d{1,2}");
-            int yCoordinate = (Convert.ToInt32(xMatch.Value) - 1);
+            Match yMatch = Regex.Match(fieldInputString, @"\d{1,2}");
+            int xCoordinate = Convert.ToInt32(yMatch.Value) - 1;
 
             Match actionMatch = Regex.Match(fieldInputString, @"(RF|R|F)$");
             string action = actionMatch.Value;
@@ -153,6 +152,7 @@ namespace Minesweeper
             FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
             return fieldInput;
         }
+
 
 
 
