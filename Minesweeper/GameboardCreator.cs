@@ -13,7 +13,7 @@ namespace Minesweeper {
         public Gameboard CreateGameboard(string difficultyString)
         {
 
-
+            
             IStrategy difficulty; 
 
             switch (difficultyString)
@@ -33,7 +33,6 @@ namespace Minesweeper {
 
             Gameboard.CreateFields(difficulty.XSize, difficulty.YSize);
 
-            // Platzieren Bomben entsprechend Strategie
             Random random = new Random();
             int bombsPlaced = 0;
             while (bombsPlaced < difficulty.NumberOfBombs)
@@ -48,7 +47,6 @@ namespace Minesweeper {
                 }
             }
 
-            // Anzahl von Bomben in der Nähe jedes Feldes
             for (int i = 0; i < difficulty.XSize; i++)
             {
                 for (int j = 0; j < difficulty.YSize; j++)
