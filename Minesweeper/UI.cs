@@ -214,7 +214,7 @@ namespace Minesweeper
         /// Prints the game board.
         /// </summary>
         /// <param name="gameBoard">The game board to be printed.</param>
-        private void PrintGameBoard(List<List<string>> gameBoard)
+        private void PrintGameBoard(List<List<string>> gameBoard, int selectedX, int selectedY)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
@@ -222,7 +222,6 @@ namespace Minesweeper
 
             for (int i = 0; i < gameBoard.Count; i++)
             {
-
                 if (i % 2 == 1)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
@@ -249,7 +248,6 @@ namespace Minesweeper
                 z = 0;
                 foreach (var element in list)
                 {
-                    Console.ForegroundColor = CurrentColor;
                     z++;
 
                     if (z % 2 == 0)
@@ -261,83 +259,77 @@ namespace Minesweeper
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                     }
 
-
-
-                    switch (element)
+                    if (t - 1 == selectedY && z - 1 == selectedX)
                     {
-                        case "P":
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                        switch (element)
+                        {
+                            case "P":
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "M":
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "M":
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "X":
-                            Console.Write("■" + " ");
-                            break;
+                            case "X":
+                                Console.Write("■" + " ");
+                                break;
 
-                        case "0":
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "0":
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "1":
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "1":
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "2":
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "2":
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "3":
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "3":
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "4":
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "4":
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "5":
-                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "5":
+                                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "6":
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "6":
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "7":
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "7":
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.Write(element + " ");
+                                break;
 
-                        case "8":
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
+                            case "8":
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.Write(element + " ");
+                                break;
 
-                        default:
-                            Console.Write(element + " ");
-                            break;
+                            default:
+                                Console.Write(element + " ");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.Write("■ ");
                     }
                 }
                 Console.WriteLine();

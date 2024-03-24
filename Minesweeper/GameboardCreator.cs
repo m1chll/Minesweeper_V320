@@ -55,9 +55,9 @@ namespace Minesweeper
             {
                 for (int j = 0; j < gameboard.YSize; j++)
                 {
-                    if (!gameboard.Fields[i][j].isBomb)
+                    if (!gameboard.Fields[i][j].IsBomb)
                     {
-                        gameboard.Fields[i][j].bombsAround = CountBombsAround(gameboard, i, j);
+                        gameboard.Fields[i][j].BombsAround = CountBombsAround(gameboard, i, j);
                     }
                 }
             }
@@ -71,13 +71,14 @@ namespace Minesweeper
             {
                 for (int j = y - 1; j <= y + 1; j++)
                 {
-                    if (i >= 0 && i < gameboard.XSize && j >= 0 && j < gameboard.YSize && gameboard.Fields[i][j].isBomb)
+                    if (i >= 0 && i < gameboard.XSize && j >= 0 && j < gameboard.YSize && gameboard.Fields[i][j].IsBomb)
                     {
                         bombsAround++;
                     }
                 }
             }
-            return bombsAround; 
+            return bombsAround;
         }
+
     }
 }
