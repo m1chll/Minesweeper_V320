@@ -45,31 +45,5 @@ namespace Minesweeper
             /// </summary>
             RemoveFlag
         }
-
-        /// <summary>
-        /// Checks if the entered field input is valid.
-        /// </summary>
-        /// <param name="input">The input string to be checked.</param>
-        /// <returns>True if the input is valid, otherwise false.</returns>
-        public static bool CheckFieldInput(string input)
-        {
-            if (input.Length < 3)
-                return false;
-
-            if (!char.IsLetter(input[0]))
-                return false;
-
-            for (int i = 1; i < input.Length - 1; i++)
-            {
-                if (!char.IsDigit(input[i]))
-                    return false;
-            }
-
-            char action = char.ToUpper(input[input.Length - 1]);
-            if (action != 'R' && action != 'F' && action != 'D')
-                return false;
-
-            return true;
-        }
     }
 }
