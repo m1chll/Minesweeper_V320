@@ -57,34 +57,25 @@
 5. **Berichterstattung:**
    - Die Tests wurden erfolgreich ausgeführt!
 
-## Testkonzept für die Überprüfung des Spielstates in Minesweeper:
 
-1. **Test der Schwierigkeitsauswahl:**
-   - Überprüfen, ob die Schwierigkeitsauswahl korrekt verarbeitet wird und das Spielfeld entsprechend der ausgewählten Schwierigkeit generiert wird.
+## Testkonzept für die RevealingAllNonBombFieldsWinsGame-Methode in Minesweeper:
 
-2. **Test der Spielfeldgenerierung:**
-   - Überprüfen, ob das Spielfeld korrekt generiert wird und die Anzahl der Bomben sowie die Positionen der Bomben den Schwierigkeitsparametern entsprechen.
+1. **Ziel des Tests:**
+   - Überprüfen, ob das Spiel als "Gewonnen" markiert wird, wenn alle nicht-Bomben-Felder aufgedeckt wurden.
 
-3. **Test der Benutzereingaben:**
-   - Überprüfen, ob die Benutzereingaben zum Aufdecken von Feldern, Platzieren von Flaggen und Entfernen von Flaggen korrekt verarbeitet werden.
+2. **Testfälle:**
+   a. **RevealingAllNonBombFieldsWinsGame_GameWon:**
+      - Beschreibung: Überprüfen, ob das Spielstatus als "Gewonnen" markiert wird, nachdem alle nicht-Bomben-Felder aufgedeckt wurden.
 
-4. **Test der Gewinnbedingung:**
-   - Überprüfen, ob das Spiel korrekt als gewonnen erkannt wird, wenn alle nicht-bombigen Felder aufgedeckt wurden und alle Bomben korrekt markiert wurden.
+3. **Testumgebung:**
+   - Verwendung einer Unit-Test-Bibliothek (z. B. NUnit).
+   - Instanziierung einer Game- und Gameboard-Objekte für die Durchführung des Tests.
+   - Simulieren des Aufdeckens aller nicht-Bomben-Felder durch entsprechende Aufrufe der UpdateFields-Methode.
 
-5. **Test der Verlierungsbedingung:**
-   - Überprüfen, ob das Spiel korrekt als verloren erkannt wird, wenn ein Feld mit einer Bombe aufgedeckt wird.
+4. **Testdurchführung:**
+   - Die UpdateFields-Methode wird aufgerufen, um alle nicht-Bomben-Felder aufzudecken.
+   - Der Spielstatus wird überprüft, um sicherzustellen, dass das Spiel als "Gewonnen" markiert ist, nachdem alle nicht-Bomben-Felder aufgedeckt wurden.
 
-**Testumgebung**:
-- Verwendung einer Unit-Test-Bibliothek wie NUnit.
-- Verwendung von Mocking-Frameworks für die Simulation von Benutzereingaben und -ausgaben.
-- Einrichtung einer Testumgebung, die es ermöglicht, das Spiel in einer kontrollierten Umgebung zu testen.
-
-**Testdurchführung**:
-- Jeder Testfall wird unabhängig voneinander durchgeführt.
-- Die erwarteten Ergebnisse werden mit den tatsächlichen Ergebnissen verglichen, und bei Übereinstimmung wird der Testfall als erfolgreich markiert.
-- Alle Tests werden automatisiert durchgeführt, um die Konsistenz und Wiederholbarkeit der Tests sicherzustellen.
-
-**Berichterstattung**:
-- Die Testergebnisse werden dokumentiert und zusammengefasst, um einen klaren Überblick über den Teststatus des Spiels zu geben.
-- Fehler werden protokolliert und bei Bedarf an das Entwicklungsteam zurückgemeldet, um Korrekturen vorzunehmen.
+5. **Berichterstattung:**
+   - Der Testfall wurde erfolgreich durchgeführt und das Spiel wurde als "Gewonnen" markiert.
 
