@@ -61,8 +61,8 @@ namespace Minesweeper
             Console.WriteLine("   - 'P' is a flag marking a potential mine.");
             Console.WriteLine("   - Numbers indicate how many mines are adjacent to that cell.");
             Console.WriteLine("-----------------------------------------------------------------------");
-            
-            
+
+
             while (true)
             {
                 Console.WriteLine("Press 1 to start");
@@ -191,30 +191,18 @@ namespace Minesweeper
 
 
         /// <summary>
-        /// Prints the current game board.
+        /// Prints the game board with only the selected field revealed.
         /// </summary>
         /// <param name="gameBoard">The game board to be printed.</param>
-        public void PrintGame(List<List<string>> gameBoard, int bombs, int flags)
-        {
-            PrintGameInformations(bombs, flags);
-            PrintGameBoard(gameBoard);
-        }
-
+        /// <param name="selectedX">The X-coordinate of the selected field.</param>
+        /// <param name="selectedY">The Y-coordinate of the selected field.</param>
         /// <summary>
-        /// Prints the number of bombs and flags.
-        /// </summary>
-        /// <param name="bombs">The number of bombs.</param>
-        /// <param name="flags">The number of flags.</param>
-        private void PrintGameInformations(int bombs, int flags)
-        {
-            Console.WriteLine($"Bombs: {bombs} Flags: {flags}");
-        }
-
-        /// <summary>
-        /// Prints the game board.
+        /// Prints the game board with only the selected field revealed.
         /// </summary>
         /// <param name="gameBoard">The game board to be printed.</param>
-        private void PrintGameBoard(List<List<string>> gameBoard)
+        /// <param name="selectedX">The X-coordinate of the selected field.</param>
+        /// <param name="selectedY">The Y-coordinate of the selected field.</param>
+        private void PrintGameBoard(List<List<string>> gameBoard, int selectedX, int selectedY)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
@@ -222,7 +210,6 @@ namespace Minesweeper
 
             for (int i = 0; i < gameBoard.Count; i++)
             {
-
                 if (i % 2 == 1)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
@@ -249,7 +236,6 @@ namespace Minesweeper
                 z = 0;
                 foreach (var element in list)
                 {
-                    Console.ForegroundColor = CurrentColor;
                     z++;
 
                     if (z % 2 == 0)
@@ -261,89 +247,64 @@ namespace Minesweeper
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                     }
 
-
-
-                    switch (element)
+                    if (t - 1 == selectedY && z - 1 == selectedX)
                     {
-                        case "P":
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "M":
+                        if (element == "M") // Bombenfeld
+                        {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "X":
-                            Console.Write("■" + " ");
-                            break;
-
-                        case "0":
+                        }
+                        else if (element == "0") // Leeres Feld
+                        {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "1":
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        }
+                        else // Zahl zeigt an, wie viele Bomben in der Nähe sind
+                        {
+                            Console.ForegroundColor = GetNumberColor(element);
                             Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "2":
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "3":
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "4":
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "5":
-                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "6":
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "7":
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        case "8":
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write(element + " ");
-                            Console.ForegroundColor = CurrentColor;
-                            break;
-
-                        default:
-                            Console.Write(element + " ");
-                            break;
+                        }
+                    }
+                    else
+                    {
+                        Console.Write("■ ");
                     }
                 }
                 Console.WriteLine();
             }
             Console.ResetColor();
         }
+
+        /// <summary>
+        /// Gets the appropriate color for the number of adjacent bombs.
+        /// </summary>
+        /// <param name="number">The number of adjacent bombs.</param>
+        /// <returns>The ConsoleColor for the number.</returns>
+        private ConsoleColor GetNumberColor(string number)
+        {
+            switch (number)
+            {
+                case "1":
+                    return ConsoleColor.DarkGreen;
+                case "2":
+                    return ConsoleColor.DarkYellow;
+                case "3":
+                    return ConsoleColor.Blue;
+                case "4":
+                    return ConsoleColor.Magenta;
+                case "5":
+                    return ConsoleColor.DarkMagenta;
+                case "6":
+                    return ConsoleColor.Red;
+                case "7":
+                    return ConsoleColor.DarkRed;
+                case "8":
+                    return ConsoleColor.DarkRed;
+                default:
+                    return ConsoleColor.White;
+            }
+        }
+
 
 
         public void PrintGameWon()
@@ -365,6 +326,20 @@ namespace Minesweeper
             Console.WriteLine(" \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   __  / ______|\\____/|____/  |___|  /__||__|   (____  / |__|_|  /__|___|  /\\___  >_");
             Console.WriteLine("        \\/     \\/      \\/     \\/          \\/          \\/       \\/  \\/                          \\/                \\/        \\/        \\/     \\/\\/");
         }
+
+        /// <summary>
+        /// Prints the current game board.
+        /// </summary>
+        /// <param name="gameBoard">The game board to be printed.</param>
+        /// <param name="bombs">The number of bombs.</param>
+        /// <param name="flags">The number of flags.</param>
+        public void PrintGame(List<List<string>> gameBoard, int bombs, int flags, int selectedX, int selectedY)
+        {
+            PrintGameBoard(gameBoard, selectedX, selectedY);
+        }
+
+
+
     }
 
 }
