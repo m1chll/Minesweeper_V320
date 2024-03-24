@@ -15,12 +15,15 @@ namespace Minesweeper.Test
         {
             using (StringWriter sw = new StringWriter())
             {
+                // Arrange
                 Console.SetOut(sw);
                 Console.SetIn(new StringReader("E\n"));
 
+                // Act
                 var expectedDifficulty = "E";
                 var actualDifficulty = GetDifficulty();
 
+                // Assert
                 Assert.AreEqual(expectedDifficulty, actualDifficulty);
             }
         }
@@ -31,12 +34,15 @@ namespace Minesweeper.Test
         {
             using (StringWriter sw = new StringWriter())
             {
+                // Arrange
                 Console.SetOut(sw);
                 Console.SetIn(new StringReader("M\n"));
 
+                // Act
                 var expectedDifficulty = "M";
                 var actualDifficulty = GetDifficulty();
 
+                // Assert
                 Assert.AreEqual(expectedDifficulty, actualDifficulty);
             }
         }
@@ -47,12 +53,15 @@ namespace Minesweeper.Test
         {
             using (StringWriter sw = new StringWriter())
             {
+                // Arrange
                 Console.SetOut(sw);
                 Console.SetIn(new StringReader("H\n"));
 
+                // Act
                 var expectedDifficulty = "H";
                 var actualDifficulty = GetDifficulty();
 
+                // Assert
                 Assert.AreEqual(expectedDifficulty, actualDifficulty);
             }
         }
@@ -62,19 +71,19 @@ namespace Minesweeper.Test
         {
             using (StringWriter sw = new StringWriter())
             {
+                // Arrange
                 Console.SetOut(sw);
-                Console.SetIn(new StringReader("X\n")); // Providing invalid input "X"
+                Console.SetIn(new StringReader("X\n"));
 
-                // Invoke the method
+                // Act
                 GetDifficulty();
 
-                // Assert that the prompt message is written to the console output
+                // Asserts
                 Assert.AreEqual("Please enter your difficulty: \r\nE = Easy\r\nM = Medium\r\nH = Hard\r\n", sw.ToString());
             }
 
         }
 
-            // Method to invoke the method being tested
             private string GetDifficulty()
         {
             Console.WriteLine("Please enter your difficulty: ");
@@ -82,7 +91,6 @@ namespace Minesweeper.Test
             Console.WriteLine("M = Medium");
             Console.WriteLine("H = Hard");
 
-            // Read input from the console and convert it to uppercase
             string difficulty = Console.ReadLine().ToUpper();
 
             return difficulty;
