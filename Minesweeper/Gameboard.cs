@@ -96,11 +96,9 @@ namespace Minesweeper
                 {
                     Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = true;
                     FlagCount++;
-                    return GameStatus.Ongoing;
+                    return GameStatus.Won;
                 }
-                return GameStatus.Won;
             }
-
             else if(fieldInput.ActionType == FieldInput.UserAction.RemoveFlag)
             {
                 if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag)
