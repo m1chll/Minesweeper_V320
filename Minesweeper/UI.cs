@@ -185,7 +185,7 @@ namespace Minesweeper
         /// </summary>
         /// <param name="gameBoard">The game board to be printed.</param>
         public void PrintGame(List<List<string>> gameBoard)
-        {§
+        {
             PrintGameInformations(0, 0);
             PrintGameBoard(gameBoard);
         }
