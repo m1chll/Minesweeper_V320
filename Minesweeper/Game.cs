@@ -30,6 +30,7 @@ namespace Minesweeper
         {
             Gameboard = new Gameboard();
             UI ui = new UI();
+            ui.PrintStartScreen();
             string difficulty = ui.GetDifficulty();
 
             GameboardCreator gameboardCreator = new GameboardCreator();

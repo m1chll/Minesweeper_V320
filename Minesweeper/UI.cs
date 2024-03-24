@@ -22,6 +22,7 @@ namespace Minesweeper
         /// Stopwatch used to track elapsed time during the game.
         /// </summary>
         public Stopwatch stopwatch = new Stopwatch();
+        ConsoleColor CurrentColor;
         public void PrintStartScreen()
         {
             string input;
@@ -117,46 +118,42 @@ namespace Minesweeper
         /// <returns>The input field coordinates and action.</returns>
         public FieldInput GetFieldUpdate()
         {
-            Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':");
-            string input = Console.ReadLine().ToUpper(); // Convert Input to capital letter
+            bool inputCorrect = false;
+            string fieldInputString;
 
-            if (!CheckedFieldInput(input))
+            do
             {
-                Console.WriteLine("Invalid input. Please try again.");
-                return GetFieldUpdate(); // Recursive call to get valid input
-            }
+                Console.WriteLine("Enter coordinates (row, column) and action (R for Reveal, F for Flag, RF for Remove Flag), e.g., 'A4R':\"");
+                fieldInputString = Console.ReadLine();
+                fieldInputString = fieldInputString.ToUpper();
+                inputCorrect = CheckFieldInput(fieldInputString);
+            } while (inputCorrect == false);
 
-            char column = input[0];
-            int row = int.Parse(input.Substring(1, input.Length - 2));
-            string actionStr = input.Substring(input.Length - 1);
+            int fieldInputLength = fieldInputString.Length;
 
-            // Convert the string representing the action to the corresponding UserAction enum value
-            UserAction action;
-            if (actionStr.Length == 1)
-            {
-                switch (actionStr[0])
-                {
-                    case 'R':
-                        action = UserAction.Reveal;
-                        break;
-                    case 'F':
-                        action = UserAction.Flag;
-                        break;
-                    default:
-                        throw new ArgumentException("Invalid action character.");
-                }
-            }
-            else if (actionStr.Equals("RF"))
-            {
-                action = UserAction.RemoveFlag;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid action string.");
-            }
+            Match yMatch = Regex.Match(fieldInputString, @"[A-Z]");
+            char xChar = Convert.ToChar(yMatch.Value);
+            int xCoordinate = (int)xChar - 65;
 
-            return new FieldInput(row, column, UserAction.Reveal);
+
+            Match xMatch = Regex.Match(fieldInputString, @"\d{1,2}");
+            int yCoordinate = (Convert.ToInt32(xMatch.Value) - 1);
+
+            Match actionMatch = Regex.Match(fieldInputString, @"(RF|R|F)$");
+            string action = actionMatch.Value;
+
+            var enumValue = action switch
+            {
+                "R" => FieldInput.UserAction.Reveal,
+                "F" => FieldInput.UserAction.Flag,
+                "RF" => FieldInput.UserAction.RemoveFlag,
+                _ => FieldInput.UserAction.Reveal,
+            };
+
+            FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
+            return fieldInput;
         }
+
 
 
 
@@ -165,7 +162,7 @@ namespace Minesweeper
         /// </summary>
         /// <param name="input">The input string to be checked.</param>
         /// <returns>True if the input is valid, otherwise false.</returns>
-        public bool CheckedFieldInput(string input)
+        public bool CheckFieldInput(string input)
         {
             if (input.Length < 3)
                 return false;
@@ -206,15 +203,133 @@ namespace Minesweeper
         /// <param name="gameBoard">The game board to be printed.</param>
         private void PrintGameBoard(List<List<string>> gameBoard)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("");
+            Console.Write("   ");
 
             for (int i = 0; i < gameBoard.Count; i++)
             {
-                for (int j = 0; j < gameBoard[i].Count; j++)
+
+                if (i % 2 == 1)
                 {
-                    Console.Write(gameBoard[i][j]);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if (i % 2 == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
+                CurrentColor = Console.ForegroundColor;
+
+                Console.Write(Convert.ToChar(i + 65) + " ");
+            }
+
+            Console.WriteLine("");
+            int t = 0;
+            int z = 0;
+            foreach (var list in gameBoard)
+            {
+                t++;
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(String.Format("{0:00}", t) + " ");
+
+                z = 0;
+                foreach (var element in list)
+                {
+                    Console.ForegroundColor = CurrentColor;
+                    z++;
+
+                    if (z % 2 == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else if (z % 2 == 1)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                    }
+
+
+
+                    switch (element)
+                    {
+                        case "P":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "M":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "X":
+                            Console.Write("■" + " ");
+                            break;
+
+                        case "0":
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "1":
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "2":
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "3":
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "4":
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "5":
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "6":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "7":
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        case "8":
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write(element + " ");
+                            Console.ForegroundColor = CurrentColor;
+                            break;
+
+                        default:
+                            Console.Write(element + " ");
+                            break;
+                    }
                 }
                 Console.WriteLine();
             }
+            Console.ResetColor();
         }
 
 

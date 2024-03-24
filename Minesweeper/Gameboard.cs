@@ -9,7 +9,9 @@ namespace Minesweeper
         public int XSize { get; set; }
         public int YSize { get; set; } 
 
-        public int placedFlagsCount { get; set; }
+        public int FlagCount { get; set; }
+        public int BombCount { get; set; }
+
         public List<List<Field>> Fields { get; set; }
         public List<List<string>> gameboard { get; set; }
 
@@ -67,31 +69,43 @@ namespace Minesweeper
         public GameStatus UpdateFields(FieldInput fieldInput)
         {
 
-            if(fieldInput.ActionType == UserAction.Reveal)
+            if(fieldInput.ActionType == FieldInput.UserAction.Reveal)
             {
-                if (Fields[fieldInput.X][fieldInput.Y].isBomb)
+                if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].isBomb)
                 {
                     return GameStatus.Lost;
                 }
-                else if (!Fields[fieldInput.X][fieldInput.Y].HasFlag && !Fields[fieldInput.X][fieldInput.Y].IsVisible)
+                else if (!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag && !Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible)
                 {
-                    RevealFields(fieldInput.X, fieldInput.Y);
+                    RevealFields(fieldInput.XCoordinate, fieldInput.YCoordinate);
+                    return GameStatus.Ongoing;
+                }
+            } 
+            else if(fieldInput.ActionType == FieldInput.UserAction.Flag && FlagCount < BombCount - 1)
+            {
+                if(!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible)
+                {
+                    Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = true;
+                    FlagCount++;
                     return GameStatus.Ongoing;
                 }
             }
-            else if(fieldInput.ActionType == UserAction.Flag)
+            else if(fieldInput.ActionType == FieldInput.UserAction.Flag && FlagCount == BombCount - 1)
             {
-                if(!Fields[fieldInput.X][fieldInput.Y].IsVisible)
+                if (!Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].IsVisible)
                 {
-                    Fields[fieldInput.X][fieldInput.Y].HasFlag = true;
+                    Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = true;
+                    FlagCount++;
                     return GameStatus.Ongoing;
                 }
+                return GameStatus.Won;
             }
-            else if(fieldInput.ActionType == UserAction.RemoveFlag)
+
+            else if(fieldInput.ActionType == FieldInput.UserAction.RemoveFlag)
             {
-                if (Fields[fieldInput.X][fieldInput.Y].HasFlag)
+                if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag)
                 {
-                    Fields[fieldInput.X][fieldInput.Y].HasFlag = false;
+                    Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = false;
                     return GameStatus.Ongoing;
                 }
 

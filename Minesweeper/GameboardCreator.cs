@@ -58,6 +58,7 @@ namespace Minesweeper {
                 }
             }
 
+            Gameboard.BombCount = difficulty.NumberOfBombs;
             return Gameboard;
         }
 
