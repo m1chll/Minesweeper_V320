@@ -77,5 +77,5 @@
    - Der Spielstatus wird überprüft, um sicherzustellen, dass das Spiel als "Gewonnen" markiert ist, nachdem alle nicht-Bomben-Felder aufgedeckt wurden.
 
 5. **Berichterstattung:**
-   - Der Testfall wurde erfolgreich durchgeführt und das Spiel wurde als "Gewonnen" markiert.
+   - Die Tests wurden erfolgreich ausgeführt!
 
