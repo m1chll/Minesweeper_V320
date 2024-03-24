@@ -127,6 +127,18 @@ namespace Minesweeper
                 inputCorrect = CheckFieldInput(fieldInputString);
             } while (!inputCorrect);
 
+            if(fieldInputString == "U" || fieldInputString == "u")
+            {
+                FieldInput inputUndo = new FieldInput(0,0,FieldInput.UserAction.Undo);
+                return inputUndo;   
+            }
+            else if(fieldInputString == "P" || fieldInputString == "P")
+            {
+                FieldInput inputPause = new FieldInput(0, 0, FieldInput.UserAction.Pause);
+                return(inputPause);
+            }
+            else
+
             int fieldInputLength = fieldInputString.Length;
 
             Match xMatch = Regex.Match(fieldInputString, @"[A-Z]");

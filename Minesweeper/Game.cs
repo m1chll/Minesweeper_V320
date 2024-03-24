@@ -66,20 +66,19 @@ namespace Minesweeper
 
         private void ValidateUserInput()
         {
-            if(CurrentFieldInput.GamePause == true)
+            if(CurrentFieldInput.ActionType == FieldInput.UserAction.Pause)
             {
                 GameStatus = GameStatus.Paused;
                 UI.MakePause();
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
-            if (CurrentFieldInput.Undo == true)
+            else if (CurrentFieldInput.ActionType == FieldInput.UserAction.Undo)
             {
                 var prevState = GameboardCaretaker.RestoreState();
                 if (prevState != null)
                 {
                     Gameboard = prevState;
-                    GameStatus = GameStatus.Ongoing;
                 }
             }
             else

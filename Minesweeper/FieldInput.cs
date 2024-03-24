@@ -45,7 +45,17 @@ namespace Minesweeper
             /// <summary>
             /// Removes a flag from the field.
             /// </summary>
-            RemoveFlag
+            RemoveFlag,
+
+            /// <summary>
+            /// Makes a Pause.
+            /// </summary>
+            Pause,
+
+            /// <summary>
+            /// Undo last Play Move.
+            /// </summary>
+            Undo
         }
     }
 }
