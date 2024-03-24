@@ -35,8 +35,8 @@ namespace Minesweeper
             Console.WriteLine(" \\ \\ \\_/\\ \\ \\_\\ \\__\\ \\ \\`\\ \\ \\ \\L\\ \\/\\ \\L\\ \\ \\ \\_/ \\_\\ \\ \\ \\L\\ \\ \\ \\L\\ \\ \\ \\/  \\ \\ \\L\\ \\ \\ \\\\ \\  ");
             Console.WriteLine("  \\ \\_\\\\ \\_\\/\\_____\\\\ \\_\\ \\_\\ \\____/\\ `\\____\\ `\\___x___/\\ \\____/\\ \\____/\\ \\_\\   \\ \\____/\\ \\_\\ \\_\\");
             Console.WriteLine("   \\/_/ \\/_/\\/_____/ \\/_/\\/_/\\/___/  \\/_____/'\\/__/\\__/  \\/___/  \\/___/  \\/_/    \\/___/  \\/_/\\/_/");
-            Console.WriteLine("                                                                                                 ");
-            Console.WriteLine("                                                                                                 ");
+            Console.WriteLine("");
+            Console.WriteLine("2");
 
             Console.ResetColor();
             Console.WriteLine("");
@@ -87,6 +87,7 @@ namespace Minesweeper
 
             while (!validInput.IsMatch(difficulty))
             {
+                Console.Clear();
                 Console.WriteLine("Please enter your difficulty: ");
                 Console.WriteLine("E = Easy");
                 Console.WriteLine("M = Medium");
@@ -150,7 +151,7 @@ namespace Minesweeper
                 _ => FieldInput.UserAction.Reveal,
             };
 
-            FieldInput fieldInput = new FieldInput(xCoordinate, yCoordinate, enumValue);
+            FieldInput fieldInput = new FieldInput(yCoordinate, xCoordinate, enumValue);
             return fieldInput;
         }
 

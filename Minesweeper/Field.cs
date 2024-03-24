@@ -44,7 +44,7 @@ namespace Minesweeper
         {
             if (HasFlag)
             {
-                return "🚩";
+                return "F";
             }
             else if (IsVisible)
             {
