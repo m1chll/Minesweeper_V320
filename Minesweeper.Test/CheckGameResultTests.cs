@@ -17,7 +17,7 @@ namespace Minesweeper.Test
             Gameboard gameboard = new Gameboard();
             FieldInput bombFieldInput = new FieldInput(0, 0, FieldInput.UserAction.Reveal);
             gameboard.CreateFields(3, 3);
-            gameboard.Fields[0][0].isBomb = true;
+            gameboard.Fields[0][0].IsBomb = true;
 
             // Act
             GameStatus status = gameboard.UpdateFields(bombFieldInput);
@@ -33,15 +33,15 @@ namespace Minesweeper.Test
             Game game = new Game();
             Gameboard gameboard = new Gameboard();
             gameboard.CreateFields(3, 3);
-            gameboard.Fields[0][0].isBomb = false;
-            gameboard.Fields[0][1].isBomb = false;
-            gameboard.Fields[0][2].isBomb = false;
-            gameboard.Fields[1][0].isBomb = false;
-            gameboard.Fields[1][1].isBomb = false;
-            gameboard.Fields[1][2].isBomb = false;
-            gameboard.Fields[2][0].isBomb = false;
-            gameboard.Fields[2][1].isBomb = false;
-            gameboard.Fields[2][2].isBomb = false;
+            gameboard.Fields[0][0].IsBomb = false;
+            gameboard.Fields[0][1].IsBomb = false;
+            gameboard.Fields[0][2].IsBomb = false;
+            gameboard.Fields[1][0].IsBomb = false;
+            gameboard.Fields[1][1].IsBomb = false;
+            gameboard.Fields[1][2].IsBomb = false;
+            gameboard.Fields[2][0].IsBomb = false;
+            gameboard.Fields[2][1].IsBomb = false;
+            gameboard.Fields[2][2].IsBomb = false;
 
             // Act
             // Assuming the player reveals all non-bomb fields here...
