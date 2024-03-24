@@ -10,10 +10,7 @@ namespace Minesweeper
     /// Represents a single field in the Minesweeper game.
     /// </summary>
     public class Field
-    {
-        public bool isBomb;
-        public int bombsAround;
-
+    { 
         /// <summary>
         /// Gets or sets a value indicating whether the field contains a bomb.
         /// </summary>
@@ -46,7 +43,7 @@ namespace Minesweeper
             {
                 return "F";
             }
-            else if (IsVisible && !isBomb)
+            else if (IsVisible && !IsBomb)
             {
                 return Convert.ToString(BombsAround);
             }
