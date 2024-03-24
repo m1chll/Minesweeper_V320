@@ -25,7 +25,7 @@ Wir freuen uns, Ihnen unsere Minesweeper-Applikation präsentieren zu können! D
 
 ## Minesweeper Tests
 [Minesweeper.Test](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Test)
-[Testkonzept](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Test)
+[Testkonzept](https://github.com/m1chll/Minesweeper_V320/blob/master/Artefakte/V320_Minesweeper_Testkonzept_Nicolas_Michael_Carina.pdf.md)
 Unsere Applikation wurde selbstverständlich gründlich getestet, um eine hohe Qualität sicherzustellen. Die Tests bieten einen umfassenden Überblick über den Aufbau unseres Codes und garantieren eine reibungslose Funktionalität. Sollten Sie dennoch auf Fehler stossen - was höchst unwahrscheinlich ist -, bitten wir Sie, sich umgehend mit unserem Team in Verbindung zu setzen. Wir sind stets bereit, Unterstützung zu leisten und Probleme schnell zu beheben.
 
 ## Persönliche Reflexion
