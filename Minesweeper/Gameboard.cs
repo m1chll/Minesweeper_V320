@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Minesweeper
 {
@@ -112,11 +113,6 @@ namespace Minesweeper
 
             }
             return GameStatus.Ongoing;
-        }
-
-        internal Gameboard Clone()
-        {
-            throw new NotImplementedException();
         }
 
         private void RevealFields(int xCoordinate, int yCoordinate)

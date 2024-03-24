@@ -5,21 +5,22 @@ namespace Minesweeper
 {
     public class GameboardCaretaker
     {
-        private Stack<GameboardMemento> mementos = new Stack<GameboardMemento>();
+        private Stack<Gameboard> mementos = new Stack<Gameboard>();
 
         public void SaveState(Gameboard gameboard)
         {
-            mementos.Push(new GameboardMemento(gameboard.Fields));
+            mementos.Push(gameboard);
         }
 
-        public List<List<Field>> RestoreState()
+        public Gameboard RestoreState()
         {
             if (mementos.Count > 0)
             {
-                return mementos.Pop().State;
+                return mementos.Pop();
             }
             return null;
         }
     }
+
 
 }

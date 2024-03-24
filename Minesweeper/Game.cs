@@ -73,12 +73,12 @@ namespace Minesweeper
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
-            else if (CurrentFieldInput.Undo == true)
+            if (CurrentFieldInput.Undo == true)
             {
                 var prevState = GameboardCaretaker.RestoreState();
                 if (prevState != null)
                 {
-                    Gameboard.Fields = prevState;
+                    Gameboard = prevState;
                     GameStatus = GameStatus.Ongoing;
                 }
             }
