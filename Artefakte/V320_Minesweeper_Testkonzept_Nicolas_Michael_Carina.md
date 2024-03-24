@@ -58,3 +58,24 @@
    - Die Tests wurden erfolgreich ausgeführt!
 
 
+## Testkonzept für die RevealingAllNonBombFieldsWinsGame-Methode in Minesweeper:
+
+1. **Ziel des Tests:**
+   - Überprüfen, ob das Spiel als "Gewonnen" markiert wird, wenn alle nicht-Bomben-Felder aufgedeckt wurden.
+
+2. **Testfälle:**
+   a. **RevealingAllNonBombFieldsWinsGame_GameWon:**
+      - Beschreibung: Überprüfen, ob das Spielstatus als "Gewonnen" markiert wird, nachdem alle nicht-Bomben-Felder aufgedeckt wurden.
+
+3. **Testumgebung:**
+   - Verwendung einer Unit-Test-Bibliothek (z. B. NUnit).
+   - Instanziierung einer Game- und Gameboard-Objekte für die Durchführung des Tests.
+   - Simulieren des Aufdeckens aller nicht-Bomben-Felder durch entsprechende Aufrufe der UpdateFields-Methode.
+
+4. **Testdurchführung:**
+   - Die UpdateFields-Methode wird aufgerufen, um alle nicht-Bomben-Felder aufzudecken.
+   - Der Spielstatus wird überprüft, um sicherzustellen, dass das Spiel als "Gewonnen" markiert ist, nachdem alle nicht-Bomben-Felder aufgedeckt wurden.
+
+5. **Berichterstattung:**
+   - Die Tests wurden erfolgreich ausgeführt!
+

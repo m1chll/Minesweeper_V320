@@ -214,7 +214,11 @@ namespace Minesweeper
         /// Prints the game board.
         /// </summary>
         /// <param name="gameBoard">The game board to be printed.</param>
-        private void PrintGameBoard(List<List<string>> gameBoard, int selectedX, int selectedY)
+        /// <summary>
+        /// Prints the game board.
+        /// </summary>
+        /// <param name="gameBoard">The game board to be printed.</param>
+        public void PrintGameBoard(List<List<string>> gameBoard)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
@@ -259,85 +263,76 @@ namespace Minesweeper
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                     }
 
-                    if (t - 1 == selectedY && z - 1 == selectedX)
+                    switch (element)
                     {
-                        switch (element)
-                        {
-                            case "P":
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write(element + " ");
-                                break;
+                        case "P":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "M":
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.Write(element + " ");
-                                break;
+                        case "M":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "X":
-                                Console.Write("■" + " ");
-                                break;
+                        case "X":
+                            Console.Write("■" + " ");
+                            break;
 
-                            case "0":
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.Write(element + " ");
-                                break;
+                        case "0":
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "1":
-                                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.Write(element + " ");
-                                break;
+                        case "1":
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "2":
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.Write(element + " ");
-                                break;
+                        case "2":
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "3":
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write(element + " ");
-                                break;
+                        case "3":
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "4":
-                                Console.ForegroundColor = ConsoleColor.Magenta;
-                                Console.Write(element + " ");
-                                break;
+                        case "4":
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "5":
-                                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                Console.Write(element + " ");
-                                break;
+                        case "5":
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "6":
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.Write(element + " ");
-                                break;
+                        case "6":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "7":
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.Write(element + " ");
-                                break;
+                        case "7":
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write(element + " ");
+                            break;
 
-                            case "8":
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.Write(element + " ");
-                                break;
+                        case "8":
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write(element + " ");
+                            break;
 
-                            default:
-                                Console.Write(element + " ");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        Console.Write("■ ");
+                        default:
+                            Console.Write(element + " ");
+                            break;
                     }
                 }
                 Console.WriteLine();
             }
             Console.ResetColor();
         }
-
-
         public void PrintGameWon()
         {
             Console.WriteLine("_________                                     __        .__          __  .__                     ._. _____.___.                                  ._.");
@@ -359,4 +354,6 @@ namespace Minesweeper
         }
     }
 
-}
+    }
+
+
