@@ -25,7 +25,7 @@ Das Sequenzdiagramm veranschaulicht unseren Entwicklungsansatz für das Mineswee
 
 
 ## Minesweeper Applikatiom
-[Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper), [Minesweeper.logic]()
+[Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper), [Minesweeper.Logic](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Logic)
 Wir freuen uns, Ihnen unsere Minesweeper-Applikation präsentieren zu können! Das Spiel wurde in C# entwickelt und bietet eine Vielzahl spannender Funktionen. Neben den eingängigen Soundeffekten haben wir auch an eine benutzerfreundliche Oberfläche gedacht. Freuen Sie sich auf verschiedene Sounds, eine Rückgängig-Funktion und eine sorgfältig durchdachte Logik, die das Spielerlebnis verbessert.
 
 ## Minesweeper Tests
