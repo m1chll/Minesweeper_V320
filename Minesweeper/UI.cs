@@ -64,6 +64,12 @@ namespace Minesweeper
             Console.WriteLine("   - 'F' is a flag marking a potential mine.");
             Console.WriteLine("   - Numbers indicate how many mines are adjacent to that cell.");
             Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("Hotkeys:");
+            Console.WriteLine("   - 'U' Undo the last move.");
+            Console.WriteLine("   - 'P' Make a break.");
+            Console.WriteLine("   - 'C' Continue after making a break.");
+            Console.WriteLine("   - Numbers indicate how many mines are adjacent to that cell.");
+            Console.WriteLine("-----------------------------------------------------------------------");
 
 
             while (true)
@@ -185,9 +191,11 @@ namespace Minesweeper
             string input;
             do
             {
+                stopwatch.Stop();
                 Console.WriteLine("Press C to continue!");
                 input = Console.ReadLine();
             } while (input != "C" && input != "c");
+            stopwatch.Start();
         }
 
 
