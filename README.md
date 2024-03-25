@@ -1,5 +1,10 @@
 # Produktvision : Vertiefungsprojekt V320
 
+**Authors**: 
+* [Nicolas Haas](https://github.com/cpowern)
+* [Michael Epper](https://github.com/m1chll)
+* [Carina Cordes](https://github.com/Coerres)
+
 ## Minesweeper Basic: Eine Neuinterpretation des Klassikers
 
 **Für Spieler, die nach einer unterhaltsamen und herausfordernden Erfahrung suchen, deren Interesse an klassischen Puzzlespielen geweckt ist und vielleicht möglicherweise alte Erinnerungen wecken will, ist Minesweeper Deluxe eine vereinfachte Version des beliebten Minesweeper-Spiels. Das auch durch simple Grafiken, anpassbare Schwierigkeitsgrade und flüssige Laufzeit. Im Gegensatz zu anderen Minesweeper-Implementierungen, bietet unser Produkt eine intuitive und simple Benutzeroberfläche, visuelle bunte Ästhetik und einen laufenden Timer, um Ihr Können zu testen.**
@@ -20,7 +25,7 @@ Das Sequenzdiagramm veranschaulicht unseren Entwicklungsansatz für das Mineswee
 
 
 ## Minesweeper Applikatiom
-[Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper)
+[Minesweeper](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper), [Minesweeper.Logic](https://github.com/m1chll/Minesweeper_V320/tree/master/Minesweeper.Logic)
 Wir freuen uns, Ihnen unsere Minesweeper-Applikation präsentieren zu können! Das Spiel wurde in C# entwickelt und bietet eine Vielzahl spannender Funktionen. Neben den eingängigen Soundeffekten haben wir auch an eine benutzerfreundliche Oberfläche gedacht. Freuen Sie sich auf verschiedene Sounds, eine Rückgängig-Funktion und eine sorgfältig durchdachte Logik, die das Spielerlebnis verbessert.
 
 ## Minesweeper Tests

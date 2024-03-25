@@ -42,7 +42,7 @@ namespace Minesweeper.Test
             gameboard.Fields[0][2].IsBomb = false;
             gameboard.Fields[1][0].IsBomb = false;
             gameboard.Fields[1][1].IsBomb = false;
-            gameboard.Fields[1][2].IsBomb = true ;
+            gameboard.Fields[1][2].IsBomb = true;
             gameboard.Fields[2][0].IsBomb = true;
             gameboard.Fields[2][1].IsBomb = false;
             gameboard.Fields[2][2].IsBomb = false;
