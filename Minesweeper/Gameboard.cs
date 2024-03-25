@@ -13,9 +13,6 @@ namespace Minesweeper
         public int FlagCount { get; set; }
         public int BombCount { get; set; }
 
-        public int Rows { get { return Fields.Count; } } // Anzahl der Zeilen
-        public int Columns { get { return Fields.Count > 0 ? Fields[0].Count : 0; } } // Anzahl der Spalten
-
         public List<List<Field>> Fields { get; set; }
         public List<List<string>> gameboard { get; set; }
 
@@ -108,6 +105,7 @@ namespace Minesweeper
                 if (Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag)
                 {
                     Fields[fieldInput.XCoordinate][fieldInput.YCoordinate].HasFlag = false;
+                    FlagCount--;
                     return GameStatus.Ongoing;
                 }
 
@@ -144,5 +142,35 @@ namespace Minesweeper
                 }
             }
         }
+
+        public Gameboard Clone()
+        {
+            var clone = new Gameboard
+            {
+                XSize = this.XSize,
+                YSize = this.YSize,
+                FlagCount = this.FlagCount,
+                BombCount = this.BombCount,
+                Fields = new List<List<Field>>()
+            };
+
+            foreach (var row in this.Fields)
+            {
+                var clonedRow = new List<Field>();
+                foreach (var field in row)
+                {
+                    clonedRow.Add(new Field
+                    {
+                        IsBomb = field.IsBomb,
+                        HasFlag = field.HasFlag,
+                        IsVisible = field.IsVisible,
+                        BombsAround = field.BombsAround
+                    });
+                }
+                clone.Fields.Add(clonedRow);
+            }
+            return clone;
+        }
+    
     }
 }

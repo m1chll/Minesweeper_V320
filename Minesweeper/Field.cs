@@ -31,7 +31,6 @@ namespace Minesweeper
         /// </summary>
         public int BombsAround { get; set; }
 
-        private string Value { get; set; }
 
         /// <summary>
         /// Gets the value of the field.

@@ -60,7 +60,7 @@ namespace Minesweeper
                 GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
                 ValidateUserInput();
-                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
+;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
             {
@@ -90,7 +90,6 @@ namespace Minesweeper
                 if (prevState != null)
                 {
                     Gameboard = prevState;
-                    GameStatus = GameStatus.Ongoing;
                 }
             }
             else
