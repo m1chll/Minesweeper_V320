@@ -6,6 +6,7 @@ using System.Transactions;
 
 namespace Minesweeper
 {
+    //Test workflow
     /// <summary>
     /// Represents a Minesweeper game.
     /// </summary>
