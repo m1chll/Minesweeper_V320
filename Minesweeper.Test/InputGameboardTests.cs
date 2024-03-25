@@ -1,27 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Minesweeper;
 
 namespace Minesweeper.Test
 {
+    /// <summary>
+    /// Provides unit tests for input actions on the game board in Minesweeper.
+    /// </summary>
     [TestClass]
     public class InputGameboardTests
     {
+        /// <summary>
+        /// Tests revealing a field on the game board.
+        /// </summary>
         [TestMethod]
         public void TestRevealField()
         {
-            // Arrange
             var gameboard = new Gameboard();
             gameboard.CreateFields(8, 8);
             gameboard.Fields[0][0].IsBomb = false;
 
-            // Act
             var status = gameboard.UpdateFields(new FieldInput(0, 0, FieldInput.UserAction.Reveal));
 
-            // Assert
             if (status == GameStatus.Lost)
             {
                 Console.WriteLine("Game Lost");
@@ -32,17 +32,17 @@ namespace Minesweeper.Test
             }
         }
 
+        /// <summary>
+        /// Tests placing a flag on the game board.
+        /// </summary>
         [TestMethod]
         public void TestPlaceFlag()
         {
-            // Arrange
             var gameboard = new Gameboard();
             gameboard.CreateFields(8, 8);
 
-            // Act
             gameboard.UpdateFields(new FieldInput(0, 0, FieldInput.UserAction.Flag));
 
-            // Assert
             if (gameboard.Fields[0][0].HasFlag)
             {
                 Console.WriteLine("Flag placed successfully");
@@ -53,18 +53,17 @@ namespace Minesweeper.Test
             }
         }
 
+        /// <summary>
+        /// Tests removing a flag from the game board.
+        /// </summary>
         [TestMethod]
         public void TestRemoveFlag()
         {
-            // Arrange
             var gameboard = new Gameboard();
             gameboard.CreateFields(8, 8);
             gameboard.Fields[0][0].HasFlag = true;
 
-            // Act
             gameboard.UpdateFields(new FieldInput(0, 0, FieldInput.UserAction.RemoveFlag));
-
-            // Assert
             if (!gameboard.Fields[0][0].HasFlag)
             {
                 Console.WriteLine("Flag removed successfully");
@@ -74,6 +73,5 @@ namespace Minesweeper.Test
                 Console.WriteLine("Failed to remove flag");
             }
         }
-
     }
 }
