@@ -56,7 +56,7 @@ namespace Minesweeper
         /// </summary>
         public void LoseSound()
         {
-            PlaySound(@"Sounds/GameLost.mp3");
+            PlaySound(@"sounds/GameLost.mp3");
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Minesweeper
         /// </summary>
         public void AlmostReady()
         {
-            PlaySound(@"Sounds/FinishHim.mp3");
+            PlaySound(@"sounds/FinishHim.mp3");
         }
     }
 }
