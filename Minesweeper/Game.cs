@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Transactions;
 
@@ -13,6 +14,7 @@ namespace Minesweeper
         private string difficulty;
         private Gameboard Gameboard;
         private GameboardCaretaker GameboardCaretaker;
+        private SoundPlayer soundPlayer; // Neues Feld für den SoundPlayer
 
         /// <summary>
         /// Gets or sets the status of the game.
@@ -21,13 +23,20 @@ namespace Minesweeper
 
         private List<List<string>> GameboardUI { get; set; }
 
-        private UI UI {  get; set; }
+        private UI UI { get; set; }
 
         /// <summary>
         /// Gets or sets the current field input for the game.
         /// </summary>
         public FieldInput CurrentFieldInput { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Game"/> class.
+        /// </summary>
+        public Game()
+        {
+            soundPlayer = new SoundPlayer(); // Initialisierung des SoundPlayers
+        }
 
         /// <summary>
         /// Plays the Minesweeper game.
@@ -38,7 +47,7 @@ namespace Minesweeper
             UI = new UI();
             UI.PrintStartScreen();
             string difficulty = UI.GetDifficulty();
-            GameboardCaretaker = new GameboardCaretaker();  
+            GameboardCaretaker = new GameboardCaretaker();
 
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
@@ -52,29 +61,37 @@ namespace Minesweeper
                 GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
                 ValidateUserInput();
+;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
             {
+                soundPlayer.LoseSound(); // Sound für Verlieren abspielen
                 UI.PrintGameLost();
             }
             else if (GameStatus == GameStatus.Won)
             {
+                soundPlayer.WinSound(); // Sound für Gewinnen abspielen
                 UI.PrintGameWon();
             }
         }
 
         private void ValidateUserInput()
         {
-            if(CurrentFieldInput.ActionType == FieldInput.UserAction.Pause)
+            if (CurrentFieldInput.GamePause == true)
             {
                 GameStatus = GameStatus.Paused;
+                soundPlayer.PauseGame(); // Sound für Pausieren abspielen
                 UI.MakePause();
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
-            else if (CurrentFieldInput.ActionType == FieldInput.UserAction.Undo)
+            if (CurrentFieldInput.Undo == true)
             {
-                Gameboard = GameboardCaretaker.RestoreState() ?? Gameboard;
+                var prevState = GameboardCaretaker.RestoreState();
+                if (prevState != null)
+                {
+                    Gameboard = prevState;
+                }
             }
             else
             {
