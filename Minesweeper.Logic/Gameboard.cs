@@ -13,7 +13,7 @@ namespace Minesweeper
         public int FlagCount { get; set; }
         public int BombCount { get; set; }
 
-        public List<List<Field>> Fields { get; set; }
+        public List<List<Field>>? Fields { get; set; }
         public List<List<string>> gameboard { get; set; }
 
         public void CreateFields(int xSize, int ySize)
