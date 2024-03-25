@@ -57,7 +57,7 @@ namespace Minesweeper.Test
             gameboard.UpdateFields(new FieldInput(2, 1, FieldInput.UserAction.Reveal));
             gameboard.UpdateFields(new FieldInput(2, 2, FieldInput.UserAction.Reveal));
 
-            Assert.AreNotEqual(GameStatus.Won, game.GameStatus);
+            Assert.AreEqual(GameStatus.Won, game.GameStatus);
         }
     }
 }
