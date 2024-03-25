@@ -10,7 +10,6 @@ namespace Minesweeper
     /// </summary>
     public class Game
     {
-        private string userName;
         private string difficulty;
         private Gameboard Gameboard;
         private GameboardCaretaker GameboardCaretaker;
