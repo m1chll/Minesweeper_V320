@@ -42,8 +42,8 @@ namespace Minesweeper.Test
             gameboard.Fields[0][2].IsBomb = false;
             gameboard.Fields[1][0].IsBomb = false;
             gameboard.Fields[1][1].IsBomb = false;
-            gameboard.Fields[1][2].IsBomb = false;
-            gameboard.Fields[2][0].IsBomb = false;
+            gameboard.Fields[1][2].IsBomb = true ;
+            gameboard.Fields[2][0].IsBomb = true;
             gameboard.Fields[2][1].IsBomb = false;
             gameboard.Fields[2][2].IsBomb = false;
 
@@ -52,8 +52,8 @@ namespace Minesweeper.Test
             gameboard.UpdateFields(new FieldInput(0, 2, FieldInput.UserAction.Reveal));
             gameboard.UpdateFields(new FieldInput(1, 0, FieldInput.UserAction.Reveal));
             gameboard.UpdateFields(new FieldInput(1, 1, FieldInput.UserAction.Reveal));
-            gameboard.UpdateFields(new FieldInput(1, 2, FieldInput.UserAction.Reveal));
-            gameboard.UpdateFields(new FieldInput(2, 0, FieldInput.UserAction.Reveal));
+            gameboard.UpdateFields(new FieldInput(1, 2, FieldInput.UserAction.Flag));
+            gameboard.UpdateFields(new FieldInput(2, 0, FieldInput.UserAction.Flag));
             gameboard.UpdateFields(new FieldInput(2, 1, FieldInput.UserAction.Reveal));
             gameboard.UpdateFields(new FieldInput(2, 2, FieldInput.UserAction.Reveal));
 

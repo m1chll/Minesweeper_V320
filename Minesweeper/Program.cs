@@ -12,13 +12,13 @@ namespace Minesweeper
             {
                 Game Game = new Game();
                 Game.PlayGame();
-                
-                Console.Clear();
+
                 Console.WriteLine("Press 1 to play again!");
                 string input = Console.ReadLine();
+                Thread.Sleep(1000);
                 Console.Clear();
 
-                if(input != "1")
+                if (input != "1")
                 {
                     break;
                 }
