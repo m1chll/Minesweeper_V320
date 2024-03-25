@@ -11,7 +11,6 @@ namespace Minesweeper
         public int XCoordinate { get; }
         public int YCoordinate { get; }
         public bool GamePause {  get; set; }
-        public bool Undo { get; set; }
         public UserAction ActionType { get; set; }
 
         /// <summary>

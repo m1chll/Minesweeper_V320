@@ -60,8 +60,7 @@ namespace Minesweeper
                 UI.PrintGame(GameboardUI, Gameboard.BombCount, Gameboard.FlagCount);
                 GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
-                ValidateUserInput();
-;               GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
+                ValidateUserInput();               
             }
             if (GameStatus == GameStatus.Lost)
             {
@@ -77,7 +76,7 @@ namespace Minesweeper
 
         private void ValidateUserInput()
         {
-            if (CurrentFieldInput.GamePause == true)
+            if (CurrentFieldInput.ActionType == FieldInput.UserAction.Pause)
             {
                 GameStatus = GameStatus.Paused;
                 soundPlayer.PauseGame(); // Sound für Pausieren abspielen
@@ -85,7 +84,7 @@ namespace Minesweeper
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
-            if (CurrentFieldInput.Undo == true)
+            if (CurrentFieldInput.ActionType == FieldInput.UserAction.Undo)
             {
                 var prevState = GameboardCaretaker.RestoreState();
                 if (prevState != null)
