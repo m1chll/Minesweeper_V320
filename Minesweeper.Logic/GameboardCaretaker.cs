@@ -15,6 +15,7 @@ namespace Minesweeper
         {
             if (mementos.Count > 0)
             {
+                mementos.Pop();
                 return mementos.Pop();
             }
             return null;

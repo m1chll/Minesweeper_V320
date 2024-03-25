@@ -393,7 +393,9 @@ namespace Minesweeper
             {
                 return;
             }
-
+            var pathOfAssembly = typeof(Program).Assembly.Location;
+            SoundPlayer musicPlayer = new SoundPlayer(resStream);
+            musicPlayer.Play();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Minesweeper
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
 
-            UI.PlaySound(@"StartGame.mp3");
+            UI.PlaySound(@"StartGame.wav");
 
             GameStatus = GameStatus.Ongoing;
 
@@ -58,12 +58,12 @@ namespace Minesweeper
             }
             if (GameStatus == GameStatus.Lost)
             {
-                UI.PlaySound(@"GameLost.mp3");
+                UI.PlaySound(@"GameLost.wav");
                 UI.PrintGameLost();
             }
             else if (GameStatus == GameStatus.Won)
             {
-                UI.PlaySound(@"YouWon.mp3");
+                UI.PlaySound(@"YouWon.wav");
                 UI.PrintGameWon();
             }
         }
@@ -74,7 +74,7 @@ namespace Minesweeper
             {
                 GameStatus = GameStatus.Paused;
                 UI.MakePause();
-                UI.PlaySound(@"PauseSound.mp3");
+                UI.PlaySound(@"PauseSound.wav");
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
