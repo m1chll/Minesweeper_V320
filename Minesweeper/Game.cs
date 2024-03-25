@@ -52,7 +52,6 @@ namespace Minesweeper
                 GameboardCaretaker.SaveState(Gameboard);
                 CurrentFieldInput = UI.GetFieldUpdate();
                 ValidateUserInput();
-                GameStatus = Gameboard.UpdateFields(CurrentFieldInput);
             }
             if (GameStatus == GameStatus.Lost)
             {
@@ -75,11 +74,7 @@ namespace Minesweeper
             }
             else if (CurrentFieldInput.ActionType == FieldInput.UserAction.Undo)
             {
-                var prevState = GameboardCaretaker.RestoreState();
-                if (prevState != null)
-                {
-                    Gameboard = prevState;
-                }
+                Gameboard = GameboardCaretaker.RestoreState() ?? Gameboard;
             }
             else
             {

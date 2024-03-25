@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Minesweeper
 {
@@ -9,7 +8,7 @@ namespace Minesweeper
 
         public void SaveState(Gameboard gameboard)
         {
-            mementos.Push(gameboard);
+            mementos.Push(gameboard.Clone());
         }
 
         public Gameboard RestoreState()
@@ -21,6 +20,4 @@ namespace Minesweeper
             return null;
         }
     }
-
-
 }
