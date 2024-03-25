@@ -8,8 +8,21 @@ namespace Minesweeper
     {
         static void Main(string[] args)
         {
-            Game Game = new Game(); 
-            Game.PlayGame();
+            while (true)
+            {
+                Game Game = new Game();
+                Game.PlayGame();
+                
+                Console.Clear();
+                Console.WriteLine("Press 1 to play again!");
+                string input = Console.ReadLine();
+                Console.Clear();
+
+                if(input != "1")
+                {
+                    break;
+                }
+            }
         }
     }
 }

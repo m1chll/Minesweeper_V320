@@ -13,6 +13,8 @@ using System.Threading.Tasks.Sources;
 using System.Runtime.CompilerServices;
 using System.Drawing;
 using System.Media;
+using System.Reflection;
+using NAudio.Wave;
 
 namespace Minesweeper
 {
@@ -21,8 +23,9 @@ namespace Minesweeper
         /// <summary>
         /// Stopwatch used to track elapsed time during the game.
         /// </summary>
-        public Stopwatch stopwatch = new Stopwatch();
         ConsoleColor CurrentColor;
+        public Stopwatch stopwatch = new Stopwatch();
+
         public void PrintStartScreen()
         {
             string input;
@@ -58,7 +61,7 @@ namespace Minesweeper
             Console.WriteLine("Legend:");
             Console.WriteLine("   - '■' represents a covered cell.");
             Console.WriteLine("   - 'M' is a mine.");
-            Console.WriteLine("   - 'P' is a flag marking a potential mine.");
+            Console.WriteLine("   - 'F' is a flag marking a potential mine.");
             Console.WriteLine("   - Numbers indicate how many mines are adjacent to that cell.");
             Console.WriteLine("-----------------------------------------------------------------------");
 
@@ -96,19 +99,9 @@ namespace Minesweeper
                     Console.WriteLine("Invalid input. Please enter E, M, or H.");
                 }
             }
-
             return difficulty;
         }
 
-        /// <summary>
-        /// Stops the stopwatch and prints the elapsed time since it started.
-        /// </summary>
-        public void SetTime()
-        {
-            stopwatch.Stop();
-            TimeSpan elapsedTime = stopwatch.Elapsed;
-            Console.WriteLine($"Elapsed Time: {elapsedTime.Hours:00}:{elapsedTime.Minutes:00}:{elapsedTime.Seconds:00}");
-        }
 
         /// <summary>
         /// Asks the user for field coordinates and action (Reveal, Flag, Remove Flag).
@@ -168,8 +161,6 @@ namespace Minesweeper
 
 
 
-
-
         /// <summary>
         /// Checks if the entered field input is valid.
         /// </summary>
@@ -206,6 +197,7 @@ namespace Minesweeper
         /// <param name="gameBoard">The game board to be printed.</param>
         public void PrintGame(List<List<string>> gameBoard, int bombs, int flags)
         {
+            Console.WriteLine();
             PrintGameInformations(bombs, flags);
             PrintGameBoard(gameBoard);
         }
@@ -217,7 +209,14 @@ namespace Minesweeper
         /// <param name="flags">The number of flags.</param>
         private void PrintGameInformations(int bombs, int flags)
         {
-            Console.WriteLine($"Bombs: {bombs} Flags: {flags}");
+
+            if(!stopwatch.IsRunning)
+            {
+                stopwatch.Start();
+            }
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            Console.WriteLine($"Bombs: {bombs} Flags: {flags} Time: {elapsedTime.Hours:00}:{elapsedTime.Minutes:00}:{elapsedTime.Seconds:00}");
+
         }
 
         /// <summary>
@@ -345,25 +344,40 @@ namespace Minesweeper
         }
         public void PrintGameWon()
         {
+            Console.Clear();
             Console.WriteLine("_________                                     __        .__          __  .__                     ._. _____.___.                                  ._.");
             Console.WriteLine("\\_   ___ \\  ____   ____    ________________ _/  |_ __ __|  | _____ _/  |_|__| ____   ____   _____| | \\__  |   | ____  __ __  __  _  ______   ____| |");
             Console.WriteLine("/    \\  \\/ /  _ \\ /    \\  / ___\\_  __ \\__  \\\\   __\\  |  \\  | \\__  \\\\   __\\  |/  _ \\ /    \\ /  ___/ |  /   |   |/  _ \\|  |  \\ \\ \\/ \\/ /  _ \\ /    \\ |");
             Console.WriteLine("\\     \\___(  <_> )   |  \\/ /_/  >  | \\/ __ \\|  | |  |  /  |__/ __ \\|  | |  (  <_> )   |  \\___ \\ |  \\____   (  <_> )  |  /  \\     (  <_> )   |  \\|");
             Console.WriteLine(" \\______  /\\____/|___|  /\\___  /|__|  (____  /__| |____/|____(____  /__| |__|\\____/|___|  /____  >__  / ______|\\____/|____/    \\/\\_/ \\____/|___|  /_");
             Console.WriteLine("        \\/            \\//_____/            \\/                     \\/                    \\/     \\/ \\/  \\/                                        \\/\\/ ");
+            stopwatch.Reset(); 
         }
 
         public void PrintGameLost()
         {
+            Console.Clear();
             Console.WriteLine("  ________                        ________                    ._. _____.___.              .__    .__  __                     .__             ._.");
             Console.WriteLine(" /  _____/_____    _____   ____   \\_____  \\___  __ ___________| | \\__  |   | ____  __ __  |  |__ |__|/  |_  _____      _____ |__| ____   ____| |");
             Console.WriteLine("/   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\  \\/ // __ \\_  __ \\ |  /   |   |/  _ \\|  |  \\ |  |  \\|  \\   __\\ \\__  \\    /     \\|  |/    \\_/ __ \\ |");
             Console.WriteLine("\\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /    |    \\   /\\  ___/|  | \\/\\|  \\____   (  <_> )  |  / |   Y  \\  ||  |    / __ \\_ |  Y Y  \\  |   |  \\  ___/\\|");
             Console.WriteLine(" \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   __  / ______|\\____/|____/  |___|  /__||__|   (____  / |__|_|  /__|___|  /\\___  >_");
             Console.WriteLine("        \\/     \\/      \\/     \\/          \\/          \\/       \\/  \\/                          \\/                \\/        \\/        \\/     \\/\\/");
+            stopwatch.Reset();
+        }
+        public static void PlaySound(string fileName)
+        {
+            var assembly = typeof(UI).Assembly;
+
+            var resStream = assembly.GetManifestResourceStream($"Minesweeper.Sounds.{fileName}");
+
+            if (resStream is null)
+            {
+                return;
+            }
+
         }
     }
-
-    }
+}
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Transactions;
 
@@ -13,7 +14,6 @@ namespace Minesweeper
         private string difficulty;
         private Gameboard Gameboard;
         private GameboardCaretaker GameboardCaretaker;
-        private SoundPlayer soundPlayer; // Neues Feld für den SoundPlayer
 
         /// <summary>
         /// Gets or sets the status of the game.
@@ -29,13 +29,6 @@ namespace Minesweeper
         /// </summary>
         public FieldInput CurrentFieldInput { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Game"/> class.
-        /// </summary>
-        public Game()
-        {
-            soundPlayer = new SoundPlayer(); // Initialisierung des SoundPlayers
-        }
 
         /// <summary>
         /// Plays the Minesweeper game.
@@ -51,6 +44,8 @@ namespace Minesweeper
             GameboardCreator gameboardCreator = new GameboardCreator();
             Gameboard = gameboardCreator.CreateGameboard(difficulty);
 
+            UI.PlaySound(@"StartGame.mp3");
+
             GameStatus = GameStatus.Ongoing;
 
             while (GameStatus == GameStatus.Ongoing)
@@ -63,12 +58,12 @@ namespace Minesweeper
             }
             if (GameStatus == GameStatus.Lost)
             {
-                soundPlayer.LoseSound(); // Sound für Verlieren abspielen
+                UI.PlaySound(@"GameLost.mp3");
                 UI.PrintGameLost();
             }
             else if (GameStatus == GameStatus.Won)
             {
-                soundPlayer.WinSound(); // Sound für Gewinnen abspielen
+                UI.PlaySound(@"YouWon.mp3");
                 UI.PrintGameWon();
             }
         }
@@ -78,8 +73,8 @@ namespace Minesweeper
             if (CurrentFieldInput.ActionType == FieldInput.UserAction.Pause)
             {
                 GameStatus = GameStatus.Paused;
-                soundPlayer.PauseGame(); // Sound für Pausieren abspielen
                 UI.MakePause();
+                UI.PlaySound(@"PauseSound.mp3");
                 GameStatus = GameStatus.Ongoing;
                 CurrentFieldInput = UI.GetFieldUpdate();
             }
