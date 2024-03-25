@@ -6,6 +6,8 @@ namespace Minesweeper.Test
     /// <summary>
     /// Provides unit tests for the creation of game boards in Minesweeper.
     /// </summary>
+
+    [TestClass]
     public class BoardCreateTests
     {
         /// <summary>
