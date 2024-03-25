@@ -1,6 +1,6 @@
 # Produktvision : Vertiefungsprojekt V320
 
-### Authors: 
+**Authors**: 
 * [Nicolas Haas](https://github.com/cpowern)
 * [Michael Epper](https://github.com/m1chll)
 * [Carina Cordes](https://github.com/Coerres)
